@@ -1,8 +1,4 @@
-@forward "./root";
-@forward "./reset";
-@forward "./variables";
-@forward "./fonts";
-@forward "./iconsax";
-@forward "./libs/swiper";
+@forward "./utils/index";
+@forward "./libs/index";
 @forward "./components/index";
 @forward "./pages/index";

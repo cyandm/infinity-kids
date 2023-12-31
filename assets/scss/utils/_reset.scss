@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "./variables" as *;
+
 /***
     The new CSS reset - version 1.11.2 (last updated 15.11.2023)
     GitHub page: https://github.com/elad2412/the-new-css-reset
@@ -44,12 +47,13 @@ hr {
 }
 
 a {
-  color: rgba(var(--text-accent), 0.9);
+  color: rgba(map.get($colors, "text-accent"), 1);
   text-decoration: underline;
+  transition: color #{$transition};
 }
 
 a:hover {
-  color: rgba(var(--text-accent), 1);
+  color: rgba(map.get($colors, "secondary-main"), 1);
 }
 
 b,
@@ -74,10 +78,6 @@ svg {
 
 label {
   display: inline-block;
-}
-
-button {
-  border-radius: 0;
 }
 
 button:focus:not(:focus-visible) {
