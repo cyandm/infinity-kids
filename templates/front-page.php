@@ -1,8 +1,9 @@
 <?php /* Template Name: Front Page */ ?>
 
-<?php
-get_header();
+<?php get_header(); ?>
 
+<main class="main-body">
 
+</main>
 
-get_footer();
+<?php get_footer(); ?>

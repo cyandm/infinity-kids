@@ -206,6 +206,10 @@ h5,
   width: 25% !important;
 }
 
+main.main-body {
+  min-height: 50vh;
+}
+
 /***
     The new CSS reset - version 1.11.2 (last updated 15.11.2023)
     GitHub page: https://github.com/elad2412/the-new-css-reset
@@ -4513,6 +4517,22 @@ meter {
   width: 66.6666666667%;
 }
 
+.c-7 > * {
+  width: 14.2857142857%;
+}
+.c-7 > .scope-2 {
+  width: 28.5714285714%;
+}
+.c-7 > .scope-3 {
+  width: 42.8571428571%;
+}
+.c-7 > .scope-4 {
+  width: 57.1428571429%;
+}
+.c-7 > .scope-6 {
+  width: 85.7142857143%;
+}
+
 @media (max-width: 575.8px) {
   .c-sm-2 > * {
     width: 50%;
@@ -4543,6 +4563,21 @@ meter {
   }
   .c-sm-6 > .scope-4 {
     width: 66.6666666667%;
+  }
+  .c-sm-7 > * {
+    width: 14.2857142857%;
+  }
+  .c-sm-7 > .scope-2 {
+    width: 28.5714285714%;
+  }
+  .c-sm-7 > .scope-3 {
+    width: 42.8571428571%;
+  }
+  .c-sm-7 > .scope-4 {
+    width: 57.1428571429%;
+  }
+  .c-sm-7 > .scope-6 {
+    width: 85.7142857143%;
   }
 }
 @media (max-width: 767.8px) {
@@ -4576,6 +4611,21 @@ meter {
   .c-md-6 > .scope-4 {
     width: 66.6666666667%;
   }
+  .c-md-7 > * {
+    width: 14.2857142857%;
+  }
+  .c-md-7 > .scope-2 {
+    width: 28.5714285714%;
+  }
+  .c-md-7 > .scope-3 {
+    width: 42.8571428571%;
+  }
+  .c-md-7 > .scope-4 {
+    width: 57.1428571429%;
+  }
+  .c-md-7 > .scope-6 {
+    width: 85.7142857143%;
+  }
 }
 @media (max-width: 959.8px) {
   .c-lg-2 > * {
@@ -4607,6 +4657,21 @@ meter {
   }
   .c-lg-6 > .scope-4 {
     width: 66.6666666667%;
+  }
+  .c-lg-7 > * {
+    width: 14.2857142857%;
+  }
+  .c-lg-7 > .scope-2 {
+    width: 28.5714285714%;
+  }
+  .c-lg-7 > .scope-3 {
+    width: 42.8571428571%;
+  }
+  .c-lg-7 > .scope-4 {
+    width: 57.1428571429%;
+  }
+  .c-lg-7 > .scope-6 {
+    width: 85.7142857143%;
   }
 }
 @media (max-width: 1199.8px) {
@@ -4640,6 +4705,21 @@ meter {
   .c-xl-6 > .scope-4 {
     width: 66.6666666667%;
   }
+  .c-xl-7 > * {
+    width: 14.2857142857%;
+  }
+  .c-xl-7 > .scope-2 {
+    width: 28.5714285714%;
+  }
+  .c-xl-7 > .scope-3 {
+    width: 42.8571428571%;
+  }
+  .c-xl-7 > .scope-4 {
+    width: 57.1428571429%;
+  }
+  .c-xl-7 > .scope-6 {
+    width: 85.7142857143%;
+  }
 }
 @media (max-width: 1439.8px) {
   .c-xxl-2 > * {
@@ -4671,6 +4751,21 @@ meter {
   }
   .c-xxl-6 > .scope-4 {
     width: 66.6666666667%;
+  }
+  .c-xxl-7 > * {
+    width: 14.2857142857%;
+  }
+  .c-xxl-7 > .scope-2 {
+    width: 28.5714285714%;
+  }
+  .c-xxl-7 > .scope-3 {
+    width: 42.8571428571%;
+  }
+  .c-xxl-7 > .scope-4 {
+    width: 57.1428571429%;
+  }
+  .c-xxl-7 > .scope-6 {
+    width: 85.7142857143%;
   }
 }
 .btn {
@@ -5242,6 +5337,21 @@ header#header #header-mobile #mobile-menu-modal .modal-container .menu-head img 
     display: none;
     visibility: hidden;
   }
+}
+
+footer#footer {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: var(--natural-100);
+  padding: 1.25rem 0;
+  box-shadow: var(--box-shadow-sm);
+  z-index: 9995;
+}
+footer#footer .footer {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=compiled.css.map */

@@ -12,29 +12,50 @@ if (!class_exists('cyn_register')) {
 
     public function cyn_basic_settings($wp_customize)
     {
-      $wp_customize->add_section('basic_settings', [
-        'title' => 'تنظیمات اولیه',
-        'priority' => 1
-      ]);
+      $section = "basic_settings";
 
-      // ADD Second Custom Logo 
-      $wp_customize->add_setting(
-        'cyn_second_logo',
+      $wp_customize->add_section(
+        $section,
         [
-          'type' => 'option'
+          'title' => 'تنظیمات اولیه',
+          'priority' => 1
         ]
       );
-      $wp_customize->add_control(
-        new WP_Customize_Upload_Control(
-          $wp_customize,
-          'cyn_second_logo',
-          array(
-            'label' => 'آیکون دوم',
-            'section' => 'basic_settings',
-            'settings' => 'cyn_second_logo'
-          )
-        )
+
+      $this->cyn_add_control($wp_customize, $section, "file", "cyn_second_logo", "آیکون دوم");
+      $this->cyn_add_control($wp_customize, $section, "file", "cyn_footer_img", "تصویر فوتر");
+    }
+
+    private function cyn_add_control($wp_customize, $section, $type, $id, $label)
+    {
+      $wp_customize->add_setting(
+        $id,
+        ['type' => 'option']
       );
+
+      if ($type == "file") {
+        $wp_customize->add_control(
+          new WP_Customize_Upload_Control(
+            $wp_customize,
+            $id,
+            array(
+              'label' => $label,
+              'section' => $section,
+              'settings' => $id
+            )
+          )
+        );
+      } else {
+        $wp_customize->add_control(
+          $id,
+          array(
+            'label' => $label,
+            'section' => $section,
+            'settings' => $id,
+            'type' => $type
+          )
+        );
+      }
     }
 
     public function cyn_register_nav()

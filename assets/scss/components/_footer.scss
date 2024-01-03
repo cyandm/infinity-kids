@@ -1,0 +1,21 @@
+@use "../utils/variables"as *;
+@use "../utils/functions"as *;
+@use "../utils/mixins"as *;
+
+footer#footer {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: $natural-100;
+  padding: 1.25rem 0;
+  box-shadow: $box-shadow-sm;
+  z-index: 9995;
+
+  .footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    
+  }
+}
