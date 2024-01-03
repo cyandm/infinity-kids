@@ -249,6 +249,7 @@ hr {
   }
 }
 a {
+  display: inline-block;
   color: #4555ac;
   text-decoration: underline;
   transition: color 0.25s ease;
@@ -275,6 +276,7 @@ a:not([href]):not([class]):hover {
 
 img,
 svg {
+  height: auto;
   vertical-align: middle;
 }
 
@@ -4672,7 +4674,10 @@ meter {
   }
 }
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
   font-weight: 400;
   line-height: 1.5;
   font-size: 1rem;
@@ -4693,6 +4698,7 @@ meter {
 .btn > i {
   vertical-align: middle;
   line-height: 1.5;
+  font-size: 1em !important;
 }
 .btn:disabled {
   pointer-events: none;
@@ -4703,6 +4709,26 @@ meter {
 }
 
 /** Initial Buttons **/
+.btn[variant=default] {
+  color: var(--body-color);
+  background-color: var(--natural-100);
+  border: 1px solid var(--natural-100);
+}
+.btn[variant=default]:hover {
+  color: var(--body-color);
+  background-color: var(--natural-200);
+  border-color: var(--natural-200);
+}
+.btn[variant=default]:focus {
+  color: var(--body-color);
+  background-color: var(--natural-100);
+  border-color: var(--natural-100);
+  box-shadow: 0 0 0 1px var(--natural-100);
+}
+.btn[variant=default]:focus:active {
+  box-shadow: 0 0 0 2px var(--natural-100);
+}
+
 .btn[variant=primary] {
   color: var(--contrast-color);
   background-color: var(--primary-main);
@@ -5016,6 +5042,205 @@ meter {
   .form-check[type=radio]:disabled, .form-check[type=radio]:disabled + label, .form-check[type=checkbox]:disabled, .form-check[type=checkbox]:disabled + label {
     pointer-events: none;
     opacity: 0.5;
+  }
+}
+
+header#header {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: var(--natural-100);
+  padding: 1.25rem 0;
+  box-shadow: var(--box-shadow-sm);
+  z-index: 9995;
+}
+header#header #header-desktop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+header#header #header-desktop .logo {
+  min-width: 2rem;
+  max-width: 2.75rem;
+}
+header#header #header-desktop .header-nav {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+header#header #header-desktop .header-nav ul {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+header#header #header-desktop .header-nav ul a {
+  padding: 0.125rem;
+  text-decoration: none;
+  color: var(--body-color);
+}
+header#header #header-desktop .header-nav ul li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.25s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+header#header #header-desktop .header-nav ul li.current-menu-item {
+  border-bottom-color: var(--primary-main);
+}
+header#header #header-desktop .header-nav ul li:hover {
+  border-bottom-color: var(--primary-main);
+}
+header#header #header-desktop .header-nav ul li:hover,
+header#header #header-desktop .header-nav ul li:hover a {
+  color: var(--primary-main);
+}
+header#header #header-desktop .header-nav ul li.discount-badge a::after {
+  content: "\ead8";
+  font-family: "iconsax" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+header#header #header-desktop .header-nav ul li.discount-badge a::after {
+  margin-right: 0.25rem;
+  color: var(--primary-main);
+}
+@media (max-width:959.8px) {
+  header#header #header-desktop .header-nav ul {
+    gap: 0.5rem;
+  }
+  header#header #header-desktop .header-nav ul li {
+    font-size: 0.9rem;
+  }
+}
+header#header #header-desktop .actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  isolation: isolate;
+}
+@media (max-width:959.8px) {
+  header#header #header-desktop .actions .btn[variant=text-primary] {
+    font-size: 0.9rem;
+  }
+}
+header#header #header-desktop .actions .header-search .btn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+header#header #header-desktop .actions .header-search .btn * {
+  pointer-events: none;
+}
+header#header #header-desktop .actions .header-search .header-search-group {
+  position: absolute;
+  right: -100%;
+  top: calc(100% + 0.25rem);
+  width: calc(100% + 2rem);
+  z-index: 7;
+  display: none;
+}
+header#header #header-desktop .actions .header-search .header-search-group.active {
+  display: block;
+}
+@media (max-width:767.8px) {
+  header#header #header-desktop {
+    display: none;
+    visibility: hidden;
+  }
+}
+header#header #header-mobile .actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header#header #header-mobile .actions .btn {
+  font-size: 1.15rem;
+  border: 1px solid rgba(145, 145, 145, 0.15);
+}
+header#header #header-mobile .actions .logo img {
+  max-width: 2.75rem;
+}
+header#header #header-mobile #mobile-menu-modal {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  padding: 1.25rem;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -999;
+  transition: 0.25s ease;
+}
+header#header #header-mobile #mobile-menu-modal .modal-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  height: 100%;
+  padding: 0.5rem;
+  margin: 0 auto;
+  background: var(--natural-100);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--natural-100);
+  transform: translateY(-10vh);
+  visibility: hidden;
+  transition: 0.25s ease;
+}
+header#header #header-mobile #mobile-menu-modal.active {
+  display: block;
+  visibility: visible;
+  pointer-events: initial;
+  z-index: 9999;
+  opacity: 1;
+}
+header#header #header-mobile #mobile-menu-modal.active .modal-container {
+  transform: translateY(0);
+  visibility: visible;
+}
+header#header #header-mobile #mobile-menu-modal .modal-container .menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header#header #header-mobile #mobile-menu-modal .modal-container .menu-head .btn.close-modal {
+  color: var(--error);
+  font-size: 1.5rem;
+  padding: 0.25rem;
+  font-weight: bolder;
+}
+header#header #header-mobile #mobile-menu-modal .modal-container .menu-head img {
+  max-width: 6rem;
+  margin-left: 0.25rem;
+}
+@media (min-width:768px) {
+  header#header #header-mobile {
+    display: none;
+    visibility: hidden;
   }
 }
 

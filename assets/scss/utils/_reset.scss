@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "./variables" as *;
+@use "./variables"as *;
 
 /***
     The new CSS reset - version 1.11.2 (last updated 15.11.2023)
@@ -47,6 +47,7 @@ hr {
 }
 
 a {
+  display: inline-block;
   color: rgba(map.get($colors, "text-accent"), 1);
   text-decoration: underline;
   transition: color #{$transition};
@@ -73,6 +74,7 @@ a:not([href]):not([class]):hover {
 
 img,
 svg {
+  height: auto;
   vertical-align: middle;
 }
 
