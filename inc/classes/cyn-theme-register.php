@@ -6,8 +6,18 @@ if (!class_exists('cyn_register')) {
 
     function __construct()
     {
-      add_action('customize_register', [$this, 'cyn_basic_settings']);
       add_action('after_setup_theme', [$this, 'cyn_register_nav']);
+      add_action('customize_register', [$this, 'cyn_basic_settings']);
+    }
+
+    public function cyn_register_nav()
+    {
+      register_nav_menus([
+        'header'          => "منوی هدر",
+        'footer_shop'     => "فروشگاه",
+        'footer_articles' => "مطالب مفید",
+        'footer_services' => "خدمات مشتریان"
+      ]);
     }
 
     public function cyn_basic_settings($wp_customize)
@@ -24,6 +34,12 @@ if (!class_exists('cyn_register')) {
 
       $this->cyn_add_control($wp_customize, $section, "file", "cyn_second_logo", "آیکون دوم");
       $this->cyn_add_control($wp_customize, $section, "file", "cyn_footer_img", "تصویر فوتر");
+      $this->cyn_add_control($wp_customize, $section, "textarea", "cyn_shop_address", "آدرس فروشگاه");
+      $this->cyn_add_control($wp_customize, $section, "tel", "cyn_phone_number1", "شماره تماس 1");
+      $this->cyn_add_control($wp_customize, $section, "tel", "cyn_phone_number2", "شماره تماس 2");
+      $this->cyn_add_control($wp_customize, $section, "url", "cyn_instagram", "آدرس اینستاگرام");
+      $this->cyn_add_control($wp_customize, $section, "url", "cyn_pinterest", "آدرس پینترست");
+      $this->cyn_add_control($wp_customize, $section, "url", "cyn_whatsapp", "آدرس واتساپ");
     }
 
     private function cyn_add_control($wp_customize, $section, $type, $id, $label)
@@ -56,13 +72,6 @@ if (!class_exists('cyn_register')) {
           )
         );
       }
-    }
-
-    public function cyn_register_nav()
-    {
-      register_nav_menus([
-        'header' => 'Header'
-      ]);
     }
   }
 }

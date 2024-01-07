@@ -9,7 +9,7 @@ header#header {
   background: $natural-100;
   padding: 1.25rem 0;
   box-shadow: $box-shadow-sm;
-  z-index: 9995;
+  z-index: 9998;
 
   #header-desktop {
     position: relative;
@@ -51,6 +51,7 @@ header#header {
           font-size: 1rem;
           border-bottom: 1px solid transparent;
           transition: border-bottom-color $transition;
+          cursor: pointer;
 
           @include inline-text();
 
@@ -63,15 +64,6 @@ header#header {
 
             &,
             a {
-              color: $primary-main;
-            }
-          }
-
-          &.discount-badge a {
-            @include make-icon("\ead8", false);
-
-            &::after {
-              margin-right: 0.25rem;
               color: $primary-main;
             }
           }
@@ -162,7 +154,6 @@ header#header {
       background: rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(12px);
       visibility: hidden;
-      pointer-events: none;
       opacity: 0;
       z-index: -999;
       transition: $transition;
@@ -186,7 +177,6 @@ header#header {
       &.active {
         display: block;
         visibility: visible;
-        pointer-events: initial;
         z-index: 9999;
         opacity: 1;
 
@@ -198,21 +188,87 @@ header#header {
     }
 
     #mobile-menu-modal .modal-container {
+      display: flex;
+      flex-direction: column;
+
+      >* {
+        width: 100%;
+      }
+
       .menu-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .btn.close-modal {
-          color: $error;
-          font-size: 1.5rem;
-          padding: 0.25rem;
-          font-weight: bolder;
+        .btn {
+          font-size: 1.15rem;
+          border: 1px solid rgba(145, 145, 145, 0.15);
         }
 
-        img {
-          max-width: 6rem;
-          margin-left: 0.25rem;
+        .logo {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            max-width: 45%;
+          }
+        }
+      }
+
+      .mobile-menu-nav {
+        flex: 1 1 auto;
+        //overflow-y: auto;
+
+        ul {
+          position: relative;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          overflow: hidden;
+
+          li {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-size: 0.95rem;
+            border-bottom: 1px solid $natural-200;
+
+            &.current-menu-item {
+
+              &,
+              a {
+                color: $secondary-main;
+              }
+
+              &::before {
+                content: "";
+                position: relative;
+                display: block;
+                background-color: $secondary-main;
+                width: 6px;
+                height: 2px;
+                border-radius: 1px;
+              }
+            }
+          }
+
+          a {
+            padding: 0.25rem;
+            text-decoration: none;
+            color: $body-color;
+
+            &:hover {
+              color: $primary-main;
+            }
+          }
         }
       }
     }
@@ -220,6 +276,19 @@ header#header {
     @media (mediaMinWidth()) {
       display: none;
       visibility: hidden;
+    }
+  }
+}
+
+header#header,
+footer#footer {
+
+  ul .discount-badge a {
+    @include make-icon("\ead8", false);
+
+    &::after {
+      margin-right: 0.25rem;
+      color: $primary-main;
     }
   }
 }

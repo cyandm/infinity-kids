@@ -1,3 +1,4 @@
+/** Open/Close Desktop Search Box **/
 jQuery(document).ready(($) => {
   const openSearchBtn = $("#open-header-search");
 
@@ -20,29 +21,26 @@ jQuery(document).ready(($) => {
   });
 });
 
+/** Open/Close Mobile Elements **/
 jQuery(document).ready(($) => {
+  /** Open/Close Modal **/
   const openMobileMenu = $("#header-mobile #open-mobile-menu");
   const menuModal = $("#header-mobile #mobile-menu-modal");
-  const closeModal = $("#header-mobile #mobile-menu-modal, #header-mobile .close-modal");
-  const modalContainer = $("#header-mobile #mobile-menu-modal .modal-container");
+  const closeModal = $("#header-mobile [data-action='close']");
 
   $(openMobileMenu).on("click", (e) => {
     e.preventDefault();
-    e.stopPropagation();
 
-    if (!$(menuModal).hasClass("active"))
+    if (!$(menuModal).hasClass("active")) {
       $(menuModal).addClass("active");
+      $(document.body).css("overflow", "hidden");
+    }
   });
 
   $(closeModal).on("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    $(menuModal).removeClass("active");
-  });
-
-  $(modalContainer).on("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if ($(e.target).attr("data-action") === "close") {
+      $(menuModal).removeClass("active");
+      $(document.body).attr("style", "");
+    }
   });
 });

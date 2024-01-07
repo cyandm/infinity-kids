@@ -66,3 +66,24 @@ $breakpoint-width in $containers-breakpoint {
     }
   }
 }
+
+@each $breakpoint,
+$breakpoint-width in $containers-breakpoint {
+  @media (max-width: ($breakpoint-width - .2)) {
+    .w-#{$breakpoint}-100 {
+      width: 100%;
+    }
+
+    .w-#{$breakpoint}-75 {
+      width: 75%;
+    }
+
+    .w-#{$breakpoint}-50 {
+      width: 50%;
+    }
+
+    .w-#{$breakpoint}-25 {
+      width: 25%;
+    }
+  }
+}

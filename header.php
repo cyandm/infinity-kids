@@ -19,7 +19,7 @@
 				</div>
 
 				<nav class="header-nav">
-					<?php wp_nav_menu(['menu' => 'Header']) ?>
+					<?php wp_nav_menu(['theme_location' => 'header']) ?>
 				</nav>
 
 				<div class="actions">
@@ -54,24 +54,19 @@
 					<a href="#" class="btn" variant="default"><i class="iconsax" icon-name="shop"></i></a>
 				</div>
 
-				<div class="clearfix s-6"></div>
-
-				<div class="mobile-search">
-					<form class="input-group" action="<?php echo site_url() ?>" method="GET">
-						<button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
-						<input name="s" type="text" class="form-control" variant="search" placeholder="جستجو" required>
-					</form>
-				</div>
-
 				<!-- Menu Modal -->
-				<div id="mobile-menu-modal" class="">
+				<div id="mobile-menu-modal" class="" data-action="close">
 					<div class="modal-container">
 						<div class="menu-head">
-							<button class="btn close-modal" variant="default"><i class="iconsax" icon-name="x"></i></button>
+							<button class="btn close-modal" variant="default" data-action="close"><i class="iconsax" data-action="close" icon-name="x"></i></button>
 
-							<div>
+							<div class="logo">
 								<img src="<?= get_option("cyn_second_logo") ?>" alt="<?= get_option("blogname") ?>">
 							</div>
+
+							<a href="#" class="btn" variant="text-primary">
+								<i class="iconsax" icon-name="login-2"></i>
+							</a>
 						</div>
 						<div class="clearfix s-4"></div>
 
@@ -83,6 +78,9 @@
 						</div>
 						<div class="clearfix s-4"></div>
 
+						<nav class="mobile-menu-nav">
+							<?php wp_nav_menu(['theme_location' => 'header']) ?>
+						</nav>
 					</div>
 				</div>
 			</div>
