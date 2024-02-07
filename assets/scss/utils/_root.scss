@@ -133,7 +133,7 @@ h5,
 
   @for $i from 0 through 16 {
     &.s-#{$i} {
-      padding: $i * 0.125rem 0;
+      padding: $i * 0.125rem 0 !important;
     }
   }
 }

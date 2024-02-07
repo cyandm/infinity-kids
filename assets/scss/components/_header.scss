@@ -6,6 +6,7 @@ header#header {
   position: relative;
   display: block;
   width: 100%;
+  top: 0;
   background: $natural-100;
   padding: 1.25rem 0;
   box-shadow: $box-shadow-sm;
@@ -24,7 +25,6 @@ header#header {
 
     .header-nav {
       flex: 1 1 auto;
-      overflow: hidden;
 
       ul {
         position: relative;
@@ -35,16 +35,17 @@ header#header {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        overflow: hidden;
         flex-wrap: wrap;
 
         a {
           padding: 0.125rem;
           text-decoration: none;
           color: $body-color;
+          @include inline-text();
         }
 
         li {
+          position: relative;
           display: block;
           margin: 0;
           padding: 0;
@@ -53,18 +54,44 @@ header#header {
           transition: border-bottom-color $transition;
           cursor: pointer;
 
-          @include inline-text();
-
           &.current-menu-item {
             border-bottom-color: $primary-main;
+          }
+
+          >ul {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            width: auto;
+            top: calc(100% + 0.125rem);
+            right: 0;
+            flex-direction: column;
+            align-items: stretch;
+            background: $natural-100;
+            box-shadow: $box-shadow-sm;
+            padding: 0.75rem;
+            border-radius: $border-radius-sm;
+            transition: all $transition;
+
+            >li>a {
+              display: block;
+              width: 100%;
+              text-align: center;
+            }
           }
 
           &:hover {
             border-bottom-color: $primary-main;
 
-            &,
-            a {
+            >a {
               color: $primary-main;
+            }
+
+            >ul {
+              visibility: visible;
+              opacity: 1;
+              pointer-events: all;
             }
           }
         }
@@ -219,7 +246,8 @@ header#header {
 
       .mobile-menu-nav {
         flex: 1 1 auto;
-        //overflow-y: auto;
+        padding: 0.75rem 0;
+        overflow-y: auto;
 
         ul {
           position: relative;
@@ -258,6 +286,11 @@ header#header {
                 border-radius: 1px;
               }
             }
+
+            &.menu-item-has-children {
+              flex-wrap: wrap;
+              border-bottom: none;
+            }
           }
 
           a {
@@ -268,6 +301,11 @@ header#header {
             &:hover {
               color: $primary-main;
             }
+          }
+
+          >li>ul {
+            width: 100%;
+            margin: 0.5rem 1.75rem 0.5rem 0;
           }
         }
       }

@@ -25,10 +25,10 @@ if (!class_exists('cyn-theme-init')) {
 			add_filter('login_errors', function () {
 				return null;
 			});
-			$this->cyn_remove_unneccesaries();
+			$this->cyn_remove_actions();
 		}
 
-		public function cyn_remove_unneccesaries()
+		public function cyn_remove_actions()
 		{
 			// REMOVE WP EMOJI
 			remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -73,6 +73,7 @@ if (!class_exists('cyn-theme-init')) {
 			add_theme_support('post-thumbnails');
 			add_theme_support('title-tag');
 			add_theme_support('automatic-feed-links');
+			add_theme_support('woocommerce');
 		}
 
 		public function cyn_allow_svg($data, $file, $filename, $mimes)

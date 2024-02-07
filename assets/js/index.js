@@ -1,1 +1,1 @@
-import "./pages/header";
+import "./components";
