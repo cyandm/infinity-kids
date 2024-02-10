@@ -2,6 +2,9 @@
 
 /**
  * $queryArgs: array;
+ * $parentClass: string;
+ * $before: string;
+ * $after: string;
  * $navigation: boolean;
  * $title: string;
  * $showAll: string;
@@ -9,17 +12,19 @@
  * $smPerPage: number;
  */
 
-$queryArgs  = isset($args['queryArgs']) ? $args['queryArgs'] : [];
-$navigation = isset($args['navigation']) ? $args['navigation'] : false;
-$bgDark     = isset($args['bgDark']) ? $args['bgDark'] : false;
-$smPerPage  = isset($args['smPerPage']) ? $args['smPerPage'] : 3;
+$queryArgs   = isset($args['queryArgs']) ? $args['queryArgs'] : [];
+$parentClass = isset($args['parentClass']) ? $args['parentClass'] : "";
+$navigation  = isset($args['navigation']) ? $args['navigation'] : false;
+$bgDark      = isset($args['bgDark']) ? $args['bgDark'] : false;
+$smPerPage   = isset($args['smPerPage']) ? $args['smPerPage'] : 3;
 
 $wpQuery = new WP_Query($queryArgs);
 if (!$wpQuery->have_posts())
   return wp_reset_postdata();
 ?>
 
-<div class="container">
+<?php echo isset($args['before']) ? $args['before'] : '' ?>
+<div class="<?= $parentClass ?>">
   <div class="swiper-products swiper <?= $bgDark ? 'bg-dark' : '' ?>">
     <?php if ($navigation) : ?>
       <div class="swiper-navigation">
@@ -83,6 +88,4 @@ if (!$wpQuery->have_posts())
     <?php endif; ?>
   </div>
 </div>
-
-<div class="clearfix"></div>
-<?php wp_reset_postdata(); ?>
+<?php echo isset($args['after']) ? $args['after'] : '' ?>

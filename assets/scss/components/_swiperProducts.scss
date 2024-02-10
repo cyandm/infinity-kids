@@ -2,15 +2,14 @@
 @use "../utils/functions"as *;
 
 .swiper.swiper-products {
-
   &.bg-dark {
     .swiper-navigation {
       .h2 {
-        color: $body-bg;
+        color: $natural-100;
       }
     }
   }
-  
+
   .swiper-navigation {
     position: relative;
     display: flex;
@@ -34,7 +33,7 @@
   &.bg-dark {
     .swiper-navigation {
       .h2 {
-        color: $body-bg;
+        color: $natural-100;
       }
     }
   }
@@ -42,8 +41,6 @@
   .swiper-navigation {
     margin-bottom: 1.25rem;
   }
-
-  
 }
 
 @media (mediaMaxWidth()) {

@@ -1,15 +1,15 @@
 <?php
 $cynProduct  = new cyn_products();
 $frontPageId = get_option('page_on_front');
-$offersGroup = get_field("home-head-product-offers", $frontPageId);
+$catsGroup   = get_field("home-product-cats", $frontPageId);
 
-if (!isset($offersGroup["home-head-product-offers-taxes"]))
+if (!isset($catsGroup["home-product-cats-taxes"]))
   return;
 else
-  $offersGroup = $offersGroup["home-head-product-offers-taxes"];
+  $catsGroup = $catsGroup["home-product-cats-taxes"];
 
-$counter = 0;
-foreach ($offersGroup as $termId) :
+
+foreach ($catsGroup as $termId) :
   $term = $cynProduct->cyn_getProductTermAttr($termId);
   if (!isset($term))
     return;
@@ -19,7 +19,7 @@ foreach ($offersGroup as $termId) :
     'posts_per_page' => 16,
     'tax_query' => array(
       array(
-        'taxonomy' => $GLOBALS['cyn_offers_tax_name'],
+        'taxonomy' => $GLOBALS['wc_cats_tax_name'],
         'field' => "slug",
         'terms' => $term['slug'],
       )
@@ -32,11 +32,9 @@ foreach ($offersGroup as $termId) :
     'navigation'  => true,
     'title'       => $term['name'],
     'showAll'     => $term['url'],
-    'bgDark'      => $counter % 2 != 0,
+    'bgDark'      => false,
     'smPerPage'   => 3,
-    'before'      => $counter % 2 == 0 ? '<section class="home-products-swiper">' : '<section class="home-products-swiper dark">',
+    'before'      => '<section class="home-products-swiper">',
     'after'       => '</section> <div class="clearfix s-11"></div>'
   ]);
-
-  $counter++;
 endforeach;

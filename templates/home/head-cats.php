@@ -26,7 +26,7 @@ $agesGroup   = get_field("home-head-cats-ages", $frontPageId);
       <div class="home-head-cats-ages">
         <?php foreach ($agesGroup["home-head-cats-ages-taxes"] as $ageCatId) : ?>
           <?php $term = get_term($ageCatId, $GLOBALS['cyn_ages_tax_name']); ?>
-          <a href="<?= get_term_link($term, $GLOBALS['cyn_ages_tax_name']) ?>">
+          <a href="<?= get_term_link($term, $GLOBALS['cyn_ages_tax_name']) ?>" class="btn" variant="text-secondary">
             <?= $term->name ?>
           </a>
         <?php endforeach; ?>

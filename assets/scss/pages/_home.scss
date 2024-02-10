@@ -59,17 +59,6 @@ main.main-body {
           }
         }
       }
-
-      .home-head-cats-ages {
-        a {
-          color: $body-color;
-          background-color: $body-bg;
-          border-radius: $border-radius;
-          padding: 0.75rem 1rem;
-          text-decoration: none;
-          text-align: center;
-        }
-      }
     }
   }
 
@@ -132,6 +121,14 @@ main.main-body {
           }
         }
       }
+    }
+  }
+
+  .home-products-swiper {
+    &.dark {
+      background-color: $natural-700;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
   }
 }
