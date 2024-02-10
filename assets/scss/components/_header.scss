@@ -12,6 +12,10 @@ header#header {
   box-shadow: $box-shadow-sm;
   z-index: 9998;
 
+  .btn {
+    padding: .375rem .75rem;
+  }
+
   #header-desktop {
     position: relative;
     display: flex;
@@ -114,6 +118,8 @@ header#header {
       isolation: isolate;
 
       .btn[variant="text-primary"] {
+        padding: 1.5*.375rem 1.5*.75rem;
+
         @media (mediaMaxWidth(lg)) {
           font-size: 0.9rem;
         }

@@ -53,42 +53,30 @@ if ($product->is_on_sale()) {
 ?>
 
 
-<div <?php wc_product_class('product-card', $product); ?>>
-	<a href="<?= $product_permalink ?>">
-		<?= $product_image ?>
+<div <?php wc_product_class('product-card-sm', $product); ?>>
+	<a href="<?= $product_permalink ?>" class="f-row c-5">
+		<div class="title scope-3">
+			<h4 class="name"><?= $product_name ?></h4>
 
-		<div class="product-details">
-			<?php if ($product->is_on_sale() && isset($discount)) : ?>
-				<div class="offer f-row c-auto">
-					<h4><?php echo 'تخفیف ویژه ' . $discount . '%' ?></h4>
-				</div>
-			<?php endif; ?>
-
-			<div class="title f-row c-2">
-				<h4 class="name"><?= $product_name ?></h4>
-
-				<div class="stock">
-					<?php if ($product->is_in_stock()) : ?>
-						<?php if ($product->is_on_sale()) : ?>
-							<span class="regular-price">
-								<?= wc_price($regular_price) ?>
-							</span>
-						<?php endif; ?>
-
-						<span class="sale-price h3">
-							<?php echo (wc_price($sale_price)) ?>
+			<div class="stock">
+				<?php if ($product->is_in_stock()) : ?>
+					<?php if ($product->is_on_sale()) : ?>
+						<span class="regular-price">
+							<?= wc_price($regular_price) ?>
 						</span>
-					<?php else : ?>
-						<span class="out-of-stock h3">ناموجود</span>
 					<?php endif; ?>
-				</div>
-			</div>
 
-			<div class="show f-row c-auto">
-				<button class="btn" variant="primary" title="<?= $product_name ?>">
-					مشاهده محصول
-				</button>
+					<span class="sale-price h3">
+						<?php echo (wc_price($sale_price)) ?>
+					</span>
+				<?php else : ?>
+					<span class="out-of-stock h3">ناموجود</span>
+				<?php endif; ?>
 			</div>
+		</div>
+
+		<div class="product-img scope-2">
+			<?= $product_image ?>
 		</div>
 	</a>
 </div>
