@@ -71,19 +71,19 @@ $breakpoint-width in $containers-breakpoint {
 $breakpoint-width in $containers-breakpoint {
   @media (max-width: ($breakpoint-width - .2)) {
     .w-#{$breakpoint}-100 {
-      width: 100%;
+      width: 100% !important;
     }
 
     .w-#{$breakpoint}-75 {
-      width: 75%;
+      width: 75% !important;
     }
 
     .w-#{$breakpoint}-50 {
-      width: 50%;
+      width: 50% !important;
     }
 
     .w-#{$breakpoint}-25 {
-      width: 25%;
+      width: 25% !important;
     }
   }
 }

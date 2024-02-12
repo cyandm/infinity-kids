@@ -21,6 +21,7 @@ if (!class_exists('cyn_acf')) {
 
       add_action('acf/init', [$this, 'cyn_front_page_acf']);
       add_action('acf/init', [$this, 'cyn_taxonomies_acf']);
+      add_action('acf/init', [$this, 'cyn_product_posts_acf']);
     }
 
     public function cyn_front_page_acf()
@@ -353,6 +354,45 @@ if (!class_exists('cyn_acf')) {
               'param' => 'taxonomy',
               'operator' => '==',
               'value' => $GLOBALS['cyn_colors_tax_name'],
+            ),
+          ),
+        )
+      ));
+    }
+
+    public function cyn_product_posts_acf()
+    {
+      acf_add_local_field_group(array(
+        'key' => 'group_99abcd2000',
+        'title' => 'محصولات مرتبط',
+        'fields' => array(
+          array(
+            'key' => 'field_65ca22c8a4e1f',
+            'label' => 'related products',
+            'name' => 'related_products',
+            'aria-label' => '',
+            'type' => 'post_object',
+            'post_type' => array(
+              0 => 'product',
+            ),
+            'post_status' => array(
+              0 => 'publish',
+            ),
+            'taxonomy' => '',
+            'return_format' => 'id',
+            'multiple' => 1,
+            'allow_null' => 0,
+            'bidirectional' => 0,
+            'ui' => 1,
+            'bidirectional_target' => array(),
+          ),
+        ),
+        'location' => array(
+          array(
+            array(
+              'param' => 'post_type',
+              'operator' => '==',
+              'value' => 'product',
             ),
           ),
         )

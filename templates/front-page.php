@@ -2,7 +2,7 @@
 
 <?php get_header(); ?>
 
-<main class="main-body">
+<main class="main-body"  role="main">
   <?php
   get_template_part('/templates/home/head-slider', null, []);
   get_template_part('/templates/home/head-cats', null, []);

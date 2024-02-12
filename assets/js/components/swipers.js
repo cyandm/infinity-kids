@@ -44,3 +44,22 @@ export const productsSwiper = new Swiper('.swiper-products', {
     clickable: true,
   }
 });
+
+export const singleProductThumbs = new Swiper('#single-product-thumbs', {
+  spaceBetween: 16,
+  slidesPerView: 3.35,
+  freeMode: true,
+  watchSlidesProgress: true,
+});
+
+export const singleProductGallery = new Swiper('#single-product-gallery', {
+  slidesPerView: 1,
+  spaceBetween: 16,
+  thumbs: {
+    swiper: singleProductThumbs,
+  },
+  navigation: {
+    nextEl: '.swiper-btn-next',
+    prevEl: '.swiper-btn-prev',
+  }
+});

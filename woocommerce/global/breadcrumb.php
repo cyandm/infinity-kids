@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Shop breadcrumb
  *
@@ -16,31 +17,36 @@
  * @see         woocommerce_breadcrumb()
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH'))
 	exit;
-}
 
-if ( ! empty( $breadcrumb ) ) {
+
+/**
+ * $delimiter
+ * $wrap_before
+ * $wrap_after
+ */
+
+$wrap_before = '<nav class="breadcrumb" aria-label="Breadcrumb"> <div class="container">';
+$wrap_after  = '</div> </nav>';
+$delimiter   = '<i class="iconsax" icon-name="chevron-left"></i>';
+
+if (!empty($breadcrumb)) {
 
 	echo $wrap_before;
 
-	foreach ( $breadcrumb as $key => $crumb ) {
+	foreach ($breadcrumb as $key => $crumb) {
 
-		echo $before;
-
-		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
-			echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
+		if (!empty($crumb[1]) && sizeof($breadcrumb) !== $key + 1) {
+			echo '<a href="' . esc_url($crumb[1]) . '">' . esc_html($crumb[0]) . '</a>';
 		} else {
-			echo esc_html( $crumb[0] );
+			echo '<a href="' . esc_url($crumb[1]) . '" class="current">' . esc_html($crumb[0]) . '</a>';
 		}
 
-		echo $after;
-
-		if ( sizeof( $breadcrumb ) !== $key + 1 ) {
+		if (sizeof($breadcrumb) !== $key + 1) {
 			echo $delimiter;
 		}
 	}
 
 	echo $wrap_after;
-
 }
