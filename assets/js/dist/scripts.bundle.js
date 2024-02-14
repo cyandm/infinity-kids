@@ -9585,6 +9585,7 @@
   var singleProductGallery = new Swiper("#single-product-gallery", {
     slidesPerView: 1,
     spaceBetween: 16,
+    autoHeight: true,
     thumbs: {
       swiper: singleProductThumbs
     },

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Show options for ordering
  *
@@ -15,17 +16,36 @@
  * @version     3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH'))
 	exit;
-}
-
 ?>
-<form class="woocommerce-ordering" method="get">
-	<select name="orderby" class="orderby" aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>">
-		<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
-			<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
-		<?php endforeach; ?>
-	</select>
-	<input type="hidden" name="paged" value="1" />
-	<?php wc_query_string_form_fields( null, array( 'orderby', 'submit', 'paged', 'product-page' ) ); ?>
-</form>
+
+<div class="ordering">
+	<p>
+		<i class="iconsax" icon-name="sort"></i>
+		<b>ترتیب براساس:</b>
+	</p>
+
+	<div class="radio-group">
+		<div>
+			<input type="radio" name="ordering" class="form-check" id="menu-order-radio" value="menu_order">
+			<label for="menu-order-radio">پیش‌فرض</label>
+		</div>
+
+		<div>
+			<input type="radio" name="ordering" class="form-check" id="popularity-radio" value="popularity">
+			<label for="popularity-radio">محبوب ترین</label>
+		</div>
+
+		<div>
+			<input type="radio" name="ordering" class="form-check" id="price-radio" value="price">
+			<label for="price-radio">ارزان ترین</label>
+		</div>
+
+		<div>
+			<input type="radio" name="ordering" class="form-check" id="price-desc-radio" value="price-desc">
+			<label for="price-desc-radio">گران ترین</label>
+		</div>
+	</div>
+</div>
+<div class="clearfix s-6"></div>

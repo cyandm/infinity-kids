@@ -5988,7 +5988,7 @@ button.swiper-pagination-bullet {
   .form-check[type=radio] + label, .form-check[type=checkbox] + label {
     position: relative;
     display: inline-block;
-    padding: 2px 6px;
+    padding: 2px 3px;
     line-height: 1;
     font-size: 0.95rem;
     color: var(--body-color);
@@ -6466,18 +6466,17 @@ footer#footer .footer-img img {
     visibility: hidden;
   }
 }
-.product-card {
-  position: relative;
-}
 .product-card a {
   position: relative;
   display: block;
   width: 100%;
+  height: 100%;
   text-decoration: none;
   color: var(--body-color);
   overflow: hidden;
   border-radius: var(--border-radius);
   background: var(--natural-100);
+  transition: 0.25s ease;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -6534,14 +6533,12 @@ footer#footer .footer-img img {
 }
 .product-card a:hover {
   color: var(--primary-main);
+  box-shadow: var(--box-shadow);
 }
 .product-card a:hover img.product-img {
   transform: var(--image-transform);
 }
 
-.product-card-sm {
-  position: relative;
-}
 .product-card-sm a {
   position: relative;
   width: 100%;
@@ -6606,6 +6603,37 @@ footer#footer .footer-img img {
 }
 .product-card-sm a:hover img.product-img {
   transform: var(--image-transform);
+}
+
+nav.archive-pagination {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.archive-pagination ul {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--natural-100);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--box-shadow-sm);
+}
+nav.archive-pagination ul li .page-numbers {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  min-width: 2.25rem;
+  text-decoration: none;
+  text-align: center;
+}
+nav.archive-pagination ul li .page-numbers.current {
+  color: var(--primary-main);
 }
 
 main.main-body #home-head-slider .swiper-slide {
@@ -6868,6 +6896,84 @@ main.site-main .single-product section.product-details .product-images #single-p
   main.site-main .single-product section.product-details .product-summary {
     padding-left: 1rem;
   }
+}
+
+div.archive-product .archive-sidebar {
+  position: relative;
+}
+div.archive-product .archive-sidebar aside.sidebar {
+  position: sticky;
+  top: 1rem;
+  padding: 1rem;
+  margin-left: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: var(--natural-100);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-sm);
+}
+@media (max-width:767.8px) {
+  div.archive-product .archive-sidebar {
+    display: none;
+    visibility: hidden;
+  }
+}
+div.archive-product .archive-loop > .ordering {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 0 0.5rem;
+  background-color: var(--natural-100);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-sm);
+}
+div.archive-product .archive-loop > .ordering > * {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 0.625rem;
+}
+div.archive-product .archive-loop > .ordering > p {
+  margin-left: 0.75rem;
+}
+div.archive-product .archive-loop > .ordering .radio-group {
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+}
+@media (max-width:767.8px) {
+  div.archive-product .archive-loop > .ordering {
+    margin: 0;
+  }
+}
+div.archive-product .archive-loop .article-loop .product-card {
+  padding: 0.5rem;
+}
+div.archive-product .archive-loop .article-loop-sm .product-card-sm:last-child a {
+  margin-bottom: 0;
+}
+@media (max-width:767.8px) {
+  div.archive-product .archive-loop .article-loop {
+    display: none;
+    visibility: hidden;
+  }
+}
+@media (min-width:768px) {
+  div.archive-product .archive-loop .article-loop-sm {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+main.main-body .not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+main.main-body .not-found img {
+  width: 26rem;
+  max-width: 100%;
 }
 
 /*# sourceMappingURL=compiled.css.map */

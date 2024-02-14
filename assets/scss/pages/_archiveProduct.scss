@@ -1,0 +1,86 @@
+@use "../utils/variables"as *;
+@use "../utils/functions"as *;
+@use "../utils/mixins"as *;
+
+div.archive-product {
+
+  .archive-sidebar {
+    position: relative;
+
+    aside.sidebar {
+      position: sticky;
+      top: 1rem;
+      padding: 1rem;
+      margin-left: 0.75rem;
+      margin-bottom: 1rem;
+      background-color: $natural-100;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow-sm;
+    }
+
+    @media (mediaMaxWidth()) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  .archive-loop {
+
+    >.ordering {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin: 0 $containers-padding;
+      background-color: $natural-100;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow-sm;
+
+      >* {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        gap: 0.625rem;
+      }
+
+      >p {
+        margin-left: 0.75rem;
+      }
+
+      .radio-group {
+        flex: 1 1 auto;
+        flex-wrap: wrap;
+      }
+
+      @media (mediaMaxWidth()) {
+        margin: 0;
+      }
+    }
+
+    .article-loop {
+      .product-card {
+        padding: $containers-padding;
+      }
+    }
+
+    .article-loop-sm {
+      .product-card-sm:last-child a {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (mediaMaxWidth()) {
+      .article-loop {
+        display: none;
+        visibility: hidden;
+      }
+    }
+
+    @media (mediaMinWidth()) {
+      .article-loop-sm {
+        display: none;
+        visibility: hidden;
+      }
+    }
+  }
+}

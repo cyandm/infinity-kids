@@ -53,7 +53,7 @@ if ($product->is_on_sale()) {
 ?>
 
 
-<div <?php wc_product_class('product-card-sm', $product); ?>>
+<div class="product-card-sm">
 	<a href="<?= $product_permalink ?>" class="f-row c-5">
 		<div class="title scope-3">
 			<h4 class="name"><?= $product_name ?></h4>

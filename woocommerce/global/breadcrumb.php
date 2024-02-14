@@ -29,7 +29,7 @@ if (!defined('ABSPATH'))
 
 $wrap_before = '<nav class="breadcrumb" aria-label="Breadcrumb"> <div class="container">';
 $wrap_after  = '</div> </nav>';
-$delimiter   = '<i class="iconsax" icon-name="chevron-left"></i>';
+$delimiter   = '<i class="iconsax" icon-name="arrow-left"></i>';
 
 if (!empty($breadcrumb)) {
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Pagination - Show numbered pagination for catalog pages
  *
@@ -15,20 +16,20 @@
  * @version 3.3.1
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
-$total   = isset( $total ) ? $total : wc_get_loop_prop( 'total_pages' );
-$current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
-$base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
-$format  = isset( $format ) ? $format : '';
+$total   = isset($total) ? $total : wc_get_loop_prop('total_pages');
+$current = isset($current) ? $current : wc_get_loop_prop('current_page');
+$base    = isset($base) ? $base : esc_url_raw(str_replace(999999999, '%#%', remove_query_arg('add-to-cart', get_pagenum_link(999999999, false))));
+$format  = isset($format) ? $format : '';
 
-if ( $total <= 1 ) {
+if ($total <= 1) {
 	return;
 }
 ?>
-<nav class="woocommerce-pagination">
+<nav class="archive-pagination">
 	<?php
 	echo paginate_links(
 		apply_filters(
@@ -37,10 +38,10 @@ if ( $total <= 1 ) {
 				'base'      => $base,
 				'format'    => $format,
 				'add_args'  => false,
-				'current'   => max( 1, $current ),
+				'current'   => max(1, $current),
 				'total'     => $total,
-				'prev_text' => is_rtl() ? '&rarr;' : '&larr;',
-				'next_text' => is_rtl() ? '&larr;' : '&rarr;',
+				'prev_text' => is_rtl() ? '<i class="iconsax" icon-name="arrow-right"></i>' : '<i class="iconsax" icon-name="arrow-left"></i>',
+				'next_text' => is_rtl() ? '<i class="iconsax" icon-name="arrow-left"></i>' : '<i class="iconsax" icon-name="arrow-right"></i>',
 				'type'      => 'list',
 				'end_size'  => 3,
 				'mid_size'  => 3,

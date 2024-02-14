@@ -32,7 +32,13 @@ if (post_password_required()) {
 	return;
 }
 
-$productId = the_ID();
+$productId = get_the_ID();
+$relatedProducts = wc_get_related_products($productId, 16, array());
+$relatedProductsArgs = array(
+	'post_type' => 'product',
+	'posts_per_page' => 16,
+	'post__in' => $relatedProducts
+);
 ?>
 
 
@@ -98,8 +104,19 @@ $productId = the_ID();
 	<div class="clearfix s-11"></div>
 
 	<section class="product-related">
-
+		<?php
+		get_template_part('/templates/swiper-products', null, [
+			'queryArgs'   => $relatedProductsArgs,
+			'parentClass' => "container",
+			'navigation'  => true,
+			'title'       => "شاید بپسندید",
+			'bgDark'      => false,
+			'smPerPage'   => 6
+		]);
+		?>
 	</section>
+	<div class="clearfix s-11"></div>
+
 	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
@@ -111,5 +128,6 @@ $productId = the_ID();
 	// do_action('woocommerce_after_single_product_summary');
 	?>
 </div>
+<div class="clearfix"></div>
 
 <?php do_action('woocommerce_after_single_product'); ?>
