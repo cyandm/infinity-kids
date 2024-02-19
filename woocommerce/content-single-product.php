@@ -105,7 +105,7 @@ $relatedProductsArgs = array(
 
 	<section class="product-related">
 		<?php
-		get_template_part('/templates/swiper-products', null, [
+		get_template_part('/templates/loop/swiper-products', null, [
 			'queryArgs'   => $relatedProductsArgs,
 			'parentClass' => "container",
 			'navigation'  => true,

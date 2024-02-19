@@ -9576,6 +9576,30 @@
       clickable: true
     }
   });
+  var postsSwiper = new Swiper(".swiper-blog", {
+    slidesPerView: 1.25,
+    spaceBetween: 16,
+    /*
+    loop: true,
+    autoplay,
+    */
+    breakpoints: {
+      576: {
+        slidesPerView: 2.25
+      },
+      1240: {
+        slidesPerView: 3.25
+      }
+    },
+    navigation: {
+      nextEl: ".swiper-btn-next",
+      prevEl: ".swiper-btn-prev"
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    }
+  });
   var singleProductThumbs = new Swiper("#single-product-thumbs", {
     spaceBetween: 16,
     slidesPerView: 3.35,
@@ -9593,5 +9617,24 @@
       nextEl: ".swiper-btn-next",
       prevEl: ".swiper-btn-prev"
     }
+  });
+  var blogHeadSlider = new Swiper("#blog-head-slider", {
+    loop: true,
+    spaceBetween: 16,
+    centeredSlides: true,
+    // autoplay,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    }
+  });
+
+  // assets/js/components/pages.js
+  jQuery(document).ready(($) => {
+    $("#blog-head-term-select").on("change", (e) => {
+      e.preventDefault();
+      const termVal = e.target.value;
+      window.open(termVal, "_self");
+    });
   });
 })();

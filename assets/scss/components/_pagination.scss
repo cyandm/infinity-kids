@@ -28,6 +28,11 @@ nav.archive-pagination {
         min-width: 2.25rem;
         text-decoration: none;
         text-align: center;
+        color: $body-color;
+
+        &:hover {
+          color: $secondary-main;
+        }
 
         &.current {
           color: $primary-main;

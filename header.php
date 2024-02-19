@@ -26,14 +26,16 @@
 					<div class="header-search">
 						<button class="btn" variant="default" id="open-header-search"><i class="iconsax" icon-name="search-normal-2"></i></button>
 						<div class="header-search-group">
-							<form class="input-group" action="<?php echo site_url() ?>" method="GET">
+							<form class="input-group" action="<?= site_url() ?>" method="GET">
 								<button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
 								<input name="s" type="text" class="form-control" variant="search" placeholder="جستجو" required>
 							</form>
 						</div>
 					</div>
 
-					<a href="#" class="btn" variant="default"><i class="iconsax" icon-name="shop"></i></a>
+					<a href="<?= wc_get_cart_url() ?>" class="btn" variant="default">
+						<i class="iconsax" icon-name="shop"></i>
+					</a>
 
 					<a href="#" class="btn" variant="text-primary">
 						ورود یا ثبت نام
@@ -51,7 +53,9 @@
 						<?php the_custom_logo() ?>
 					</div>
 
-					<a href="#" class="btn" variant="default"><i class="iconsax" icon-name="shop"></i></a>
+					<a href="<?= wc_get_cart_url() ?>" class="btn" variant="default">
+						<i class="iconsax" icon-name="shop"></i>
+					</a>
 				</div>
 
 				<!-- Menu Modal -->

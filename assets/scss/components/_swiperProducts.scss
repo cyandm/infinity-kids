@@ -1,7 +1,8 @@
 @use "../utils/variables"as *;
 @use "../utils/functions"as *;
 
-.swiper.swiper-products {
+.swiper.swiper-products,
+.swiper.swiper-blog {
   &.bg-dark {
     .swiper-navigation {
       .h2 {

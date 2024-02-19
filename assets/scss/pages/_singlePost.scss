@@ -1,0 +1,16 @@
+@use "../utils/variables"as *;
+@use "../utils/functions"as *;
+@use "../utils/mixins"as *;
+
+main.main-body {
+  .post-header {
+    h1 {
+      margin-bottom: 0.75rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

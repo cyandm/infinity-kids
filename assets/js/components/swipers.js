@@ -45,6 +45,31 @@ export const productsSwiper = new Swiper('.swiper-products', {
   }
 });
 
+export const postsSwiper = new Swiper('.swiper-blog', {
+  slidesPerView: 1.25,
+  spaceBetween: 16,
+  /*
+  loop: true,
+  autoplay,
+  */
+  breakpoints: {
+    576: {
+      slidesPerView: 2.25,
+    },
+    1240: {
+      slidesPerView: 3.25,
+    },
+  },
+  navigation: {
+    nextEl: '.swiper-btn-next',
+    prevEl: '.swiper-btn-prev',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  }
+});
+
 export const singleProductThumbs = new Swiper('#single-product-thumbs', {
   spaceBetween: 16,
   slidesPerView: 3.35,
@@ -62,5 +87,16 @@ export const singleProductGallery = new Swiper('#single-product-gallery', {
   navigation: {
     nextEl: '.swiper-btn-next',
     prevEl: '.swiper-btn-prev',
+  }
+});
+
+export const blogHeadSlider = new Swiper('#blog-head-slider', {
+  loop: true,
+  spaceBetween: 16,
+  centeredSlides: true,
+  // autoplay,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
   }
 });

@@ -21,7 +21,9 @@ if (!class_exists('cyn_acf')) {
 
       add_action('acf/init', [$this, 'cyn_front_page_acf']);
       add_action('acf/init', [$this, 'cyn_taxonomies_acf']);
-      add_action('acf/init', [$this, 'cyn_product_posts_acf']);
+      // add_action('acf/init', [$this, 'cyn_product_posts_acf']);
+      add_action('acf/init', [$this, 'cyn_blog_page_acf']);
+      add_action('acf/init', [$this, 'cyn_posts_acf']);
     }
 
     public function cyn_front_page_acf()
@@ -308,6 +310,39 @@ if (!class_exists('cyn_acf')) {
               ),
             ),
           ),
+          array(
+            'key' => 'group_99abcd0700',
+            'label' => 'دسته بندی مقالات',
+            'name' => 'home-posts-cats',
+            'aria-label' => '',
+            'type' => 'group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'layout' => 'block',
+            'sub_fields' => array(
+              array(
+                'key' => 'field_99abcd0701',
+                'label' => 'دسته ها',
+                'name' => 'home-posts-cats-taxes',
+                'aria-label' => '',
+                'type' => 'taxonomy',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'taxonomy' => "category",
+                'add_term' => 0,
+                'save_terms' => 0,
+                'load_terms' => 0,
+                'return_format' => 'id',
+                'field_type' => 'multi_select',
+                'allow_null' => 1,
+                'bidirectional' => 0,
+                'multiple' => 0,
+                'bidirectional_target' => array(),
+              ),
+            ),
+          )
         ),
         'location' => array(
           array(
@@ -362,6 +397,7 @@ if (!class_exists('cyn_acf')) {
 
     public function cyn_product_posts_acf()
     {
+      /*
       acf_add_local_field_group(array(
         'key' => 'group_99abcd2000',
         'title' => 'محصولات مرتبط',
@@ -393,6 +429,161 @@ if (!class_exists('cyn_acf')) {
               'param' => 'post_type',
               'operator' => '==',
               'value' => 'product',
+            ),
+          ),
+        )
+      ));
+      */
+    }
+
+    public function cyn_blog_page_acf()
+    {
+      $blogHeadSlider = array();
+      for ($i = 1; $i < 9; $i++) {
+        $blogHeadSlider[] = array(
+          'key' => 'field_99abcd310' . $i,
+          'label' => 'اسلاید ' . $i,
+          'name' => 'blog-head-slider-' . $i,
+          'type' => 'group',
+          'layout' => 'block',
+          'wrapper' => array(
+            'width' => '25',
+            'class' => '',
+            'id' => '',
+          ),
+          'sub_fields' => array(
+            /*
+            array(
+              'key' => 'field_99abcd3101' . $i,
+              'label' => 'تصویر',
+              'name' => 'slide_img',
+              'aria-label' => '',
+              'type' => 'image',
+              'instructions' => '',
+              'required' => 0,
+              'conditional_logic' => 0,
+              'return_format' => 'url',
+              'library' => 'all',
+              'min_width' => '',
+              'min_height' => '',
+              'min_size' => '',
+              'max_width' => '',
+              'max_height' => '',
+              'max_size' => '',
+              'mime_types' => '',
+              'preview_size' => 'medium',
+            ),
+            */
+            array(
+              'key' => 'field_99abcd3102' . $i,
+              'label' => 'نوشته',
+              'name' => 'slider_post',
+              'aria-label' => '',
+              'type' => 'post_object',
+              'instructions' => '',
+              'required' => 0,
+              'conditional_logic' => 0,
+              'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+              ),
+              'post_type' => array(
+                0 => 'post',
+              ),
+              'post_status' => array(
+                0 => 'publish',
+              ),
+              'taxonomy' => '',
+              'return_format' => 'id',
+              'multiple' => 0,
+              'allow_null' => 0,
+              'bidirectional' => 0,
+              'ui' => 1,
+              'bidirectional_target' => array(),
+            ),
+          )
+        );
+      }
+
+      acf_add_local_field_group(array(
+        'key' => 'group_99abcd3000',
+        'title' => 'برگه بلاگ',
+        'fields' => array(
+          array(
+            'key' => 'group_99abcd3100',
+            'label' => '',
+            'name' => 'blog-head-slider',
+            'type' => 'group',
+            'layout' => 'block',
+            'sub_fields' => $blogHeadSlider
+          ),
+        ),
+        'location' => array(
+          array(
+            array(
+              'param' => 'page_template',
+              'operator' => '==',
+              'value' => 'templates/blog.php',
+            ),
+          ),
+        )
+      ));
+    }
+
+    public function cyn_posts_acf()
+    {
+      acf_add_local_field_group(array(
+        'key' => 'group_99abcd4000',
+        'title' => 'مقالات مرتبط',
+        'fields' => array(
+          array(
+            'key' => 'field_99abcd4010',
+            'label' => 'مقالات مرتبط',
+            'name' => 'related_posts',
+            'aria-label' => '',
+            'type' => 'post_object',
+            'post_type' => array(
+              0 => 'post',
+            ),
+            'post_status' => array(
+              0 => 'publish',
+            ),
+            'taxonomy' => '',
+            'return_format' => 'id',
+            'multiple' => 1,
+            'allow_null' => 0,
+            'bidirectional' => 0,
+            'ui' => 1,
+            'bidirectional_target' => array(),
+          ),
+          array(
+            'key' => 'field_99abcd4020',
+            'label' => 'شاید بپسندید',
+            'name' => 'liked_posts',
+            'aria-label' => '',
+            'type' => 'post_object',
+            'post_type' => array(
+              0 => 'post',
+            ),
+            'post_status' => array(
+              0 => 'publish',
+            ),
+            'taxonomy' => '',
+            'return_format' => 'id',
+            'multiple' => 1,
+            'allow_null' => 0,
+            'bidirectional' => 0,
+            'ui' => 1,
+            'bidirectional_target' => array(),
+          ),
+        ),
+        'location' => array(
+          array(
+            array(
+              'param' => 'post_type',
+              'operator' => '==',
+              'value' => 'post',
             ),
           ),
         )
