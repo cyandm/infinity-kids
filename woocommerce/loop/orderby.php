@@ -18,9 +18,19 @@
 
 if (!defined('ABSPATH'))
 	exit;
+
+function setChecked($value)
+{
+	echo 'value="' . $value . '"';
+
+	if (isset($_GET['orderby']) && $_GET['orderby'] == $value)
+		return "checked";
+
+	return '';
+}
 ?>
 
-<div class="ordering">
+<div id="product-archive-ordering" class="ordering">
 	<p>
 		<i class="iconsax" icon-name="sort"></i>
 		<b>ترتیب براساس:</b>
@@ -28,22 +38,22 @@ if (!defined('ABSPATH'))
 
 	<div class="radio-group">
 		<div>
-			<input type="radio" name="ordering" class="form-check" id="menu-order-radio" value="menu_order">
+			<input type="radio" name="orderby" class="form-check" id="menu-order-radio" <?= setChecked("menu_order") ?>>
 			<label for="menu-order-radio">پیش‌فرض</label>
 		</div>
 
 		<div>
-			<input type="radio" name="ordering" class="form-check" id="popularity-radio" value="popularity">
+			<input type="radio" name="orderby" class="form-check" id="popularity-radio" <?= setChecked("popularity") ?>>
 			<label for="popularity-radio">محبوب ترین</label>
 		</div>
 
 		<div>
-			<input type="radio" name="ordering" class="form-check" id="price-radio" value="price">
+			<input type="radio" name="orderby" class="form-check" id="price-radio" <?= setChecked("price") ?>>
 			<label for="price-radio">ارزان ترین</label>
 		</div>
 
 		<div>
-			<input type="radio" name="ordering" class="form-check" id="price-desc-radio" value="price-desc">
+			<input type="radio" name="orderby" class="form-check" id="price-desc-radio" <?= setChecked("price-desc") ?>>
 			<label for="price-desc-radio">گران ترین</label>
 		</div>
 	</div>
