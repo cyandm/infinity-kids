@@ -59,5 +59,50 @@ if (!class_exists('cyn_products')) {
 
       return $termsAttr;
     }
+
+
+    /** archive product filter **/
+    public function cyn_archive_pre_get_posts($query)
+    {
+      if ($query->is_archive && $query->is_main_query() && !is_admin() && !is_category()) {
+        function filterNumbers($val)
+        {
+          return ((int)$val > 0);
+        }
+
+        $getCats   = isset($_GET['cats']) ? array_filter(explode(",", $_GET['cats']), "filterNumbers") : [];
+        $getAges   = isset($_GET['ages']) ? array_filter(explode(",", $_GET['ages']), "filterNumbers") : [];
+        $getColors = isset($_GET['colors']) ? array_filter(explode(",", $_GET['colors']), "filterNumbers") : [];
+
+        $tax_query = array('relation' => "AND");
+
+        if (count($getCats) > 0) {
+          $tax_query[] = array(
+            'taxonomy' => $GLOBALS['wc_cats_tax_name'],
+            'field' => "term_id",
+            'terms' => $getCats,
+          );
+        }
+
+        if (count($getAges) > 0) {
+          $tax_query[] = array(
+            'taxonomy' => $GLOBALS['cyn_ages_tax_name'],
+            'field' => "term_id",
+            'terms' => $getAges,
+          );
+        }
+
+        if (count($getColors) > 0) {
+          $tax_query[] = array(
+            'taxonomy' => $GLOBALS['cyn_colors_tax_name'],
+            'field' => "term_id",
+            'terms' => $getColors,
+          );
+        }
+
+        $query->set('tax_query', $tax_query);
+        $GLOBALS["archive_query"] = $query;
+      }
+    }
   }
 }

@@ -2,7 +2,6 @@
 @use "../utils/functions"as *;
 
 main.main-body {
-
   .blog-head-slider {
     background-color: $natural-200;
     padding: 1.5rem 0;
@@ -104,18 +103,16 @@ main.main-body {
   }
 
   .blog-head-search {
-
     .container {
-      padding: 2.75rem 5rem;
+      padding: 2.75rem 7rem;
       border-radius: $border-radius;
 
       .f-row {
-
         >div {
-          padding: 0 0.75rem;
-
           >* {
             height: 100%;
+            max-width: 25rem;
+            margin: 0 auto;
           }
         }
       }

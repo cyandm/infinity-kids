@@ -19,6 +19,10 @@ require_once(__DIR__ . '/inc/classes/cyn-products.php');
 
 
 /* Initializing Classes */
-new cyn_theme_init(true, '0.1.0');
+new cyn_theme_init(true, '0.2.0');
 new cyn_register();
 new cyn_acf();
+
+
+/* Actions */
+add_action('pre_get_posts', [new cyn_products(), 'cyn_archive_pre_get_posts']);

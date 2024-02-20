@@ -1,3 +1,7 @@
+<?php
+$accountPermalink = get_permalink(get_option('woocommerce_myaccount_page_id')) . 'orders';
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes() ?>>
 
@@ -26,10 +30,7 @@
 					<div class="header-search">
 						<button class="btn" variant="default" id="open-header-search"><i class="iconsax" icon-name="search-normal-2"></i></button>
 						<div class="header-search-group">
-							<form class="input-group" action="<?= site_url() ?>" method="GET">
-								<button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
-								<input name="s" type="text" class="form-control" variant="search" placeholder="جستجو" required>
-							</form>
+							<?php get_template_part('/templates/loop/search-form', null, []); ?>
 						</div>
 					</div>
 
@@ -37,7 +38,7 @@
 						<i class="iconsax" icon-name="shop"></i>
 					</a>
 
-					<a href="#" class="btn" variant="text-primary">
+					<a href="<?= $accountPermalink ?>" class="btn" variant="text-primary">
 						ورود یا ثبت نام
 						<i class="iconsax" icon-name="login-2"></i>
 					</a>
@@ -68,17 +69,14 @@
 								<img src="<?= get_option("cyn_second_logo") ?>" alt="<?= get_option("blogname") ?>">
 							</div>
 
-							<a href="#" class="btn" variant="text-primary">
+							<a href="<?= $accountPermalink ?>" class="btn" variant="text-primary">
 								<i class="iconsax" icon-name="login-2"></i>
 							</a>
 						</div>
 						<div class="clearfix s-4"></div>
 
 						<div class="mobile-search">
-							<form class="input-group" action="<?php echo site_url() ?>" method="GET">
-								<button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
-								<input name="s" type="text" class="form-control" variant="search" placeholder="جستجو" required>
-							</form>
+							<?php get_template_part('/templates/loop/search-form', null, []); ?>
 						</div>
 						<div class="clearfix s-4"></div>
 

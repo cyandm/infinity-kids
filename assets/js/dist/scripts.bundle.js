@@ -9672,6 +9672,7 @@
         $(e.target).attr("variant", "secondary");
         $(taxInput).attr("value", catsValue + catId + ",");
       }
+      taxInput.dispatchEvent(new Event("change"));
     });
     $("#product-archive-ordering input[name='orderby']").on("change", (e) => {
       const orderby = $(e.target).attr("value");
@@ -9679,6 +9680,14 @@
       if (!orderbyInput)
         return;
       $(orderbyInput).attr("value", orderby);
+      orderbyInput.dispatchEvent(new Event("change"));
+    });
+    $("#archive-product-filter-form input[type='hidden']").on("change", (e) => {
+      $("#archive-product-filter-form").submit();
+    });
+    $("#clear-archive-product-filter").on("click", (e) => {
+      $("#archive-product-filter-form input[type='hidden']:not([name='page'])").attr("value", "");
+      $("#archive-product-filter-form").submit();
     });
   });
 })();

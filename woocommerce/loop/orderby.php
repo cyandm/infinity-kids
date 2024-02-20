@@ -28,6 +28,14 @@ function setChecked($value)
 
 	return '';
 }
+
+$orderList = array(
+	'menu_order' => "پیش‌فرض",
+	'popularity' => "محبوب‌ترین",
+	'price'      => "ارزان‌ترین",
+	'price-desc' => "گران‌ترین",
+	'date'       => "جدیدترین"
+);
 ?>
 
 <div id="product-archive-ordering" class="ordering">
@@ -37,25 +45,12 @@ function setChecked($value)
 	</p>
 
 	<div class="radio-group">
-		<div>
-			<input type="radio" name="orderby" class="form-check" id="menu-order-radio" <?= setChecked("menu_order") ?>>
-			<label for="menu-order-radio">پیش‌فرض</label>
-		</div>
-
-		<div>
-			<input type="radio" name="orderby" class="form-check" id="popularity-radio" <?= setChecked("popularity") ?>>
-			<label for="popularity-radio">محبوب ترین</label>
-		</div>
-
-		<div>
-			<input type="radio" name="orderby" class="form-check" id="price-radio" <?= setChecked("price") ?>>
-			<label for="price-radio">ارزان ترین</label>
-		</div>
-
-		<div>
-			<input type="radio" name="orderby" class="form-check" id="price-desc-radio" <?= setChecked("price-desc") ?>>
-			<label for="price-desc-radio">گران ترین</label>
-		</div>
+		<?php foreach ($orderList as $name => $label) : ?>
+			<div>
+				<input type="radio" name="orderby" class="form-check" id="<?= $name ?>-radio" <?= setChecked($name) ?>>
+				<label for="<?= $name ?>-radio"><?= $label ?></label>
+			</div>
+		<?php endforeach; ?>
 	</div>
 </div>
 <div class="clearfix s-6"></div>

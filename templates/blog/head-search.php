@@ -7,10 +7,7 @@ $postTerms  = $cynProduct->cyn_getProductTerms(true, false, "category");
   <div class="container" style="background-image: url(<?= get_stylesheet_directory_uri() . '/assets/img/star-bg.webp' ?>);">
     <div class="f-row c-2">
       <div class="w-md-100">
-        <form class="input-group" action="<?php echo site_url() ?>" method="GET">
-          <button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
-          <input name="s" type="text" class="form-control" variant="search" placeholder="جستجو" required>
-        </form>
+        <?php get_template_part('/templates/loop/search-form', null, ['section' => "blog"]); ?>
       </div>
 
       <div class="w-md-100">
