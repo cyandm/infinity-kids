@@ -9,6 +9,8 @@ if (!class_exists('cyn_register')) {
       add_action('init', [$this, 'cyn_register_tax']);
       add_action('after_setup_theme', [$this, 'cyn_register_nav']);
       add_action('customize_register', [$this, 'cyn_basic_settings']);
+
+      $this->cyn_addMetabox();
     }
 
     public function cyn_register_nav()
@@ -156,6 +158,47 @@ if (!class_exists('cyn_register')) {
             )
           );
       }
+    }
+
+    /** Size guide custom metabox **/
+    public function cyn_addMetabox()
+    {
+      add_action('add_meta_boxes_product', [$this, 'cyn_addProductMetabox']);
+      add_action('save_post', [$this, 'cyn_productMetabox_save'], 10, 2);
+    }
+
+    public function cyn_addProductMetabox()
+    {
+      add_meta_box(
+        "product_size_meta",
+        "راهنمای اندازه",
+        [$this, 'cyn_productMetabox_callback'],
+        "product",
+        "normal",
+        "default"
+      );
+    }
+
+    public function cyn_productMetabox_callback($post)
+    {
+      wp_nonce_field(basename(__FILE__), 'product-custom-meta-nonce');
+      get_template_part("templates/admin/product-metabox", null, array('post' => $post));
+      $metaValue = get_post_meta($post->ID, "product_size_guide", true);
+      echo '<input type="hidden" name="product-custom-meta-inp" id="product-custom-meta-inp" value="' . $metaValue . '">';
+    }
+
+    public function cyn_productMetabox_save($post_id, $post)
+    {
+      if (!isset($_POST['product-custom-meta-nonce']) || !wp_verify_nonce($_POST['product-custom-meta-nonce'], basename(__FILE__))) {
+        return $post;
+      }
+
+      if (isset($_POST["product-custom-meta-inp"])) {
+        $metaValue = sanitize_text_field($_POST["product-custom-meta-inp"]);
+        update_post_meta($post_id, "product_size_guide", $metaValue);
+      }
+
+      return;
     }
   }
 }

@@ -1,4 +1,5 @@
 @use "sass:map";
+@use 'sass:color';
 @use "../utils/variables"as *;
 @use "../utils/mixins"as *;
 
@@ -98,7 +99,8 @@ $btn-tags:
 "secondary",
 "text-primary",
 "text-secondary",
-"text-light";
+"text-light"
+"yellow";
 
 #{btn-select("default")} {
   @include btn(
@@ -180,6 +182,19 @@ $btn-tags:
     $h-color: $natural-100,
     $h-bg-color: $natural-700,
     $h-br-color: $natural-700
+    /**/
+  );
+}
+
+#{btn-select("yellow")} {
+  @include btn(
+    /**/
+    $color: $body-color,
+    $bg-color: $warning2,
+    $br-color: $warning2,
+    $h-color: $natural-100,
+    $h-bg-color: darken(map.get($colors, "warning2"), 15%),
+    $h-br-color: darken(map.get($colors, "warning2"), 15%)
     /**/
   );
 }
