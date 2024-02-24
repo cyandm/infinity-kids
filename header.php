@@ -1,5 +1,9 @@
 <?php
+$frontPageId      = get_option('page_on_front');
 $accountPermalink = get_permalink(get_option('woocommerce_myaccount_page_id')) . 'orders';
+
+$headField = get_field('acf_head_scripts', $frontPageId);
+$bodyField = get_field('acf_top_body', $frontPageId);
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +12,14 @@ $accountPermalink = get_permalink(get_option('woocommerce_myaccount_page_id')) .
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<?= isset($headField) ? $headField : ''; ?>
 	<?php wp_head() ?>
 </head>
 
 <body <?php body_class() ?>>
+	<?= isset($bodyField) ? $bodyField : ''; ?>
+
 	<?php wp_body_open() ?>
 
 	<header id="header">
