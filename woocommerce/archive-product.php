@@ -32,13 +32,15 @@ do_action('woocommerce_before_main_content');
 
 <div class="archive-product container">
 	<div class="f-row c-4">
-		<div class="archive-sidebar scope-1 w-md-100">
+		<div class="archive-sidebar scope-1 w-md-100" data-action="close">
 			<?php get_template_part('/woocommerce/archive', 'product-sidebar', []); ?>
 		</div>
 
 		<div class="archive-loop scope-3 w-md-100">
 			<h1 class="archive-title"><?php woocommerce_page_title(); ?></h1>
 			<div class="clearfix s-6"></div>
+
+			<button id="mobile-show-sidebar" class="btn w-100" variant="text-secondary">نمایش فیلترها</button>
 
 			<?php
 			if (woocommerce_product_loop()) {

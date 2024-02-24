@@ -19,7 +19,7 @@ require_once(__DIR__ . '/inc/classes/cyn-products.php');
 
 
 /* Initializing Classes */
-new cyn_theme_init(true, '0.2.0');
+new cyn_theme_init(false, '0.2.0');
 new cyn_register();
 new cyn_acf();
 

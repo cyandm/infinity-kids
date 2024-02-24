@@ -9689,5 +9689,25 @@
       $("#archive-product-filter-form input[type='hidden']:not([name='page'])").attr("value", "");
       $("#archive-product-filter-form").submit();
     });
+    $("#mobile-show-sidebar").on("click", (e) => {
+      e.preventDefault();
+      const sidebar = $(".archive-sidebar")[0];
+      if (!sidebar)
+        return;
+      if (!$(sidebar).hasClass("active")) {
+        $(sidebar).addClass("active");
+        $(document.body).css("overflow", "hidden");
+      }
+    });
+    $("[data-action='close']").on("click", (e) => {
+      e.preventDefault();
+      const sidebar = $(".archive-sidebar")[0];
+      if (!sidebar)
+        return;
+      if ($(e.target).attr("data-action") === "close") {
+        $(sidebar).removeClass("active");
+        $(document.body).attr("style", "");
+      }
+    });
   });
 })();

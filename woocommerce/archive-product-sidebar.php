@@ -36,6 +36,10 @@ $getColors = isset($_GET['colors']) ? explode(",", $_GET['colors']) : [];
 ?>
 
 <aside class="sidebar">
+  <div class="close-sidebar">
+    <button class="btn close-sidebar-btn" variant="default" data-action="close"><i class="iconsax" data-action="close" icon-name="x"></i></button>
+  </div>
+
   <?php get_template_part('/templates/loop/search-form', null, ['section' => "product"]); ?>
   <div class="clearfix s-6"></div>
 

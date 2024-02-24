@@ -21,9 +21,9 @@ if (!class_exists('cyn_acf')) {
 
       add_action('acf/init', [$this, 'cyn_front_page_acf']);
       add_action('acf/init', [$this, 'cyn_taxonomies_acf']);
-      // add_action('acf/init', [$this, 'cyn_product_posts_acf']);
       add_action('acf/init', [$this, 'cyn_blog_page_acf']);
       add_action('acf/init', [$this, 'cyn_posts_acf']);
+      add_action('acf/init', [$this, 'cyn_about_us_acf']);
     }
 
     public function cyn_front_page_acf()
@@ -395,47 +395,6 @@ if (!class_exists('cyn_acf')) {
       ));
     }
 
-    public function cyn_product_posts_acf()
-    {
-      /*
-      acf_add_local_field_group(array(
-        'key' => 'group_99abcd2000',
-        'title' => 'محصولات مرتبط',
-        'fields' => array(
-          array(
-            'key' => 'field_65ca22c8a4e1f',
-            'label' => 'related products',
-            'name' => 'related_products',
-            'aria-label' => '',
-            'type' => 'post_object',
-            'post_type' => array(
-              0 => 'product',
-            ),
-            'post_status' => array(
-              0 => 'publish',
-            ),
-            'taxonomy' => '',
-            'return_format' => 'id',
-            'multiple' => 1,
-            'allow_null' => 0,
-            'bidirectional' => 0,
-            'ui' => 1,
-            'bidirectional_target' => array(),
-          ),
-        ),
-        'location' => array(
-          array(
-            array(
-              'param' => 'post_type',
-              'operator' => '==',
-              'value' => 'product',
-            ),
-          ),
-        )
-      ));
-      */
-    }
-
     public function cyn_blog_page_acf()
     {
       $blogHeadSlider = array();
@@ -584,6 +543,236 @@ if (!class_exists('cyn_acf')) {
               'param' => 'post_type',
               'operator' => '==',
               'value' => 'post',
+            ),
+          ),
+        )
+      ));
+    }
+
+    public function cyn_about_us_acf()
+    {
+      acf_add_local_field_group(array(
+        'key' => 'group_99abcd5000',
+        'title' => 'برگه درباره ما',
+        'fields' => array(
+          array(
+            'key' => 'group_99abcd5100',
+            'label' => 'درباره ما',
+            'name' => 'about_us_about',
+            'aria-label' => '',
+            'type' => 'group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'layout' => 'block',
+            'sub_fields' => array(
+              array(
+                'key' => 'field_99abcd5101',
+                'label' => 'عنوان',
+                'name' => 'about_us_about_title',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => 'با اینفینیتی آشنا شو!',
+                'maxlength' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+              ),
+              array(
+                'key' => 'field_99abcd5102',
+                'label' => 'متن',
+                'name' => 'about_us_about_context',
+                'aria-label' => '',
+                'type' => 'wysiwyg',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => '',
+                'tabs' => 'all',
+                'toolbar' => 'full',
+                'media_upload' => 1,
+                'delay' => 0,
+              ),
+            ),
+          ),
+          array(
+            'key' => 'group_99abcd5200',
+            'label' => 'راهنمای خرید',
+            'name' => 'about_us_guide',
+            'aria-label' => '',
+            'type' => 'group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'layout' => 'block',
+            'sub_fields' => array(
+              array(
+                'key' => 'field_99abcd5201',
+                'label' => 'عنوان',
+                'name' => 'about_us_guide_title',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => 'راهنمای خرید',
+                'maxlength' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+              ),
+              array(
+                'key' => 'field_99abcd5202',
+                'label' => 'متن',
+                'name' => 'about_us_guide_context',
+                'aria-label' => '',
+                'type' => 'wysiwyg',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => '',
+                'tabs' => 'all',
+                'toolbar' => 'full',
+                'media_upload' => 1,
+                'delay' => 0,
+              ),
+              array(
+                'key' => 'field_99abcd5203',
+                'label' => 'تصویر',
+                'name' => 'about_us_guide_image',
+                'aria-label' => '',
+                'type' => 'image',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'return_format' => 'url',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => '',
+                'preview_size' => 'medium',
+                'wrapper' => array(
+                  'width' => '50',
+                  'class' => '',
+                  'id' => '',
+                ),
+              ),
+              array(
+                'key' => 'field_99abcd5204',
+                'label' => 'آدرس',
+                'name' => 'about_us_guide_url',
+                'aria-label' => '',
+                'type' => 'url',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'placeholder' => '',
+                'wrapper' => array(
+                  'width' => '50',
+                  'class' => '',
+                  'id' => '',
+                ),
+              ),
+            ),
+          ),
+          array(
+            'key' => 'group_99abcd5300',
+            'label' => 'شرایط و مقررات',
+            'name' => 'about_us_regulation',
+            'aria-label' => '',
+            'type' => 'group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'layout' => 'block',
+            'sub_fields' => array(
+              array(
+                'key' => 'field_99abcd5301',
+                'label' => 'عنوان',
+                'name' => 'about_us_regulation_title',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => 'شرایط و مقررات تعویض و مرجوع',
+                'maxlength' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+              ),
+              array(
+                'key' => 'field_99abcd5302',
+                'label' => 'متن',
+                'name' => 'about_us_regulation_context',
+                'aria-label' => '',
+                'type' => 'wysiwyg',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'default_value' => '',
+                'tabs' => 'all',
+                'toolbar' => 'full',
+                'media_upload' => 1,
+                'delay' => 0,
+              ),
+              array(
+                'key' => 'field_99abcd5303',
+                'label' => 'تصویر',
+                'name' => 'about_us_regulation_image',
+                'aria-label' => '',
+                'type' => 'image',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'return_format' => 'url',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => '',
+                'preview_size' => 'medium',
+                'wrapper' => array(
+                  'width' => '50',
+                  'class' => '',
+                  'id' => '',
+                ),
+              ),
+              array(
+                'key' => 'field_99abcd5304',
+                'label' => 'آدرس',
+                'name' => 'about_us_regulation_url',
+                'aria-label' => '',
+                'type' => 'url',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'placeholder' => '',
+                'wrapper' => array(
+                  'width' => '50',
+                  'class' => '',
+                  'id' => '',
+                ),
+              ),
+            ),
+          ),
+        ),
+        'location' => array(
+          array(
+            array(
+              'param' => 'page_template',
+              'operator' => '==',
+              'value' => 'templates/about-us.php',
             ),
           ),
         )

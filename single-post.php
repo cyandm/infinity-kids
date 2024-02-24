@@ -6,6 +6,14 @@ $postTitle      = get_the_title($post_id);
 $postPermalink  = get_the_permalink($post_id);
 $relatedPosts   = get_field("related_posts", $post_id);
 $likedPosts     = get_field("liked_posts", $post_id);
+
+function cyn_reading_time($id)
+{
+  $content = get_post_field('post_content', $id);
+  $word_count = str_word_count(strip_tags($content));
+  $reading_time = ceil($word_count / 50);
+  return $reading_time;
+}
 ?>
 
 <?php get_header(); ?>
@@ -33,13 +41,33 @@ $likedPosts     = get_field("liked_posts", $post_id);
       </a>
   </nav>
 
-  <section class="container">
+  <section class="post-content container">
     <div class="post-header">
       <h1 class="title"><?= $postTitle ?></h1>
-      <img src="<?= get_the_post_thumbnail_url($post_id, "full") ?>" alt="<?= $postTitle ?>">
+      <img class="thumbnail" src="<?= get_the_post_thumbnail_url($post_id, "full") ?>" alt="<?= $postTitle ?>">
+      <div class="clearfix s-6"></div>
 
       <div class="post-details">
+        <div class="r f-row">
+          <p>
+            <i class="iconsax" icon-name="book-open"></i>
+            زمان مطالعه
+            <?= cyn_reading_time($post_id) ?>
+            دقیقه
+          </p>
 
+          <p>
+            <i class="iconsax" icon-name="calendar-1"></i>
+            <?= get_the_date() ?>
+          </p>
+        </div>
+
+        <div class="l f-row">
+          <?php foreach ($postCategories as $termId) : ?>
+            <?php $term = $cynProduct->cyn_getProductTermAttr($termId) ?>
+            <a href="<?= $term['url'] ?>"><?= $term['name'] ?></a>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
     <div class="clearfix s-11"></div>
@@ -49,22 +77,23 @@ $likedPosts     = get_field("liked_posts", $post_id);
     </article>
     <div class="clearfix s-11"></div>
 
-    <!-- <div class="comments" id="comments">
-      <div class="caption">
-        <h2>دیدگاه ها<i></i>
+    <div class="comments" id="comments">
+      <div class="title">
+        <p class="h3">
+          دیدگاه‌ها
+          <i></i>
           <small>
             <span>
-              <?php //echo get_comments_number($id); 
-              ?>
+              <?php echo get_comments_number($id); ?>
             </span>
             دیدگاه
           </small>
         </h2>
       </div>
+      <div class="clearfix s-6"></div>
 
-      <?php //comments_template(); 
-      ?>
-    </div> -->
+      <?php comments_template(); ?>
+    </div>
   </section>
   <div class="clearfix s-11"></div>
 
