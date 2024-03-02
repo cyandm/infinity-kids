@@ -15,7 +15,7 @@ comment_form(array(
     </div>',
     'cookies' => ""
   ],
-  'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="btn" variant="primary" value="ارسال دیدگاه" />',
+  'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="btn w-md-100" variant="primary" value="ارسال دیدگاه" />',
   'comment_notes_before' => "",
   'comment_notes_after' => "",
   'logged_in_as' => null,

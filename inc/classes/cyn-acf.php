@@ -343,6 +343,34 @@ if (!class_exists('cyn_acf')) {
               ),
             ),
           ),
+          array(
+            'key' => 'field_99abcd0800',
+            'label' => 'سوالات متداول',
+            'name' => 'home_faq',
+            'aria-label' => '',
+            'type' => 'post_object',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'post_type' => array(
+              0 => $GLOBALS['cyn_faq_post_name'],
+            ),
+            'post_status' => array(
+              0 => 'publish',
+            ),
+            'taxonomy' => '',
+            'return_format' => 'id',
+            'multiple' => 1,
+            'allow_null' => 0,
+            'bidirectional' => 0,
+            'ui' => 1,
+            'bidirectional_target' => array(),
+          ),
           // header and body scripts
           array(
             'key' => 'tab_99abcd0800',

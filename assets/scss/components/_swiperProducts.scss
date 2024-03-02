@@ -28,6 +28,12 @@
       }
     }
   }
+
+  .swiper-wrapper {
+    .swiper-slide {
+      height: auto;
+    }
+  }
 }
 
 .swiper-products-sm {

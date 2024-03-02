@@ -4,8 +4,13 @@ if (!class_exists('cyn_products')) {
   class cyn_products
   {
 
-    function __construct()
+    function __construct($actions = false)
     {
+      if ($actions) {
+        add_action('pre_get_posts', [$this, 'cyn_archive_pre_get_posts']);
+        add_filter('woocommerce_variation_is_active', [$this, 'cyn_variations_out_of_stock'], 10, 2);
+        add_filter('woocommerce_checkout_fields', [$this, 'cyn_checkout_fields']);
+      }
     }
 
     /** product terms **/
@@ -103,6 +108,66 @@ if (!class_exists('cyn_products')) {
         $query->set('tax_query', $tax_query);
         $GLOBALS["archive_query"] = $query;
       }
+    }
+
+    /** single product disable not is in stock variation **/
+    public function cyn_variations_out_of_stock($grey_out, $variation)
+    {
+      if (!$variation->is_in_stock())
+        return false;
+
+      return true;
+    }
+
+    /** custom checkout page form fields **/
+    public function cyn_checkout_fields($fields)
+    {
+      unset($fields['billing']['billing_company']);
+      unset($fields['billing']['billing_country']);
+      unset($fields['billing']['billing_address_2']);
+
+      $fields['billing']['billing_first_name']['priority'] = 1;
+      $fields['billing']['billing_last_name']['priority'] = 2;
+      $fields['billing']['billing_state']['priority'] = 3;
+      $fields['billing']['billing_city']['priority'] = 4;
+      $fields['billing']['billing_address_1']['priority'] = 5;
+      $fields['billing']['billing_email']['priority'] = 6;
+      $fields['billing']['billing_phone']['priority'] = 7;
+      $fields['billing']['billing_postcode']['priority'] = 8;
+
+      $fields['billing']['billing_country']['class'] = ['hidden'];
+      $fields['billing']['billing_first_name']['class'] = [];
+      $fields['billing']['billing_last_name']['class'] = [];
+      $fields['billing']['billing_state']['class'] = [];
+      $fields['billing']['billing_city']['class'] = [];
+      $fields['billing']['billing_address_1']['class'] = ['w-100'];
+      $fields['billing']['billing_phone']['class'] = [];
+      $fields['billing']['billing_email']['class'] = [];
+      $fields['billing']['billing_postcode']['class'] = ['w-100'];
+
+      $fields['billing']['billing_first_name']['input_class'] = ['form-control'];
+      $fields['billing']['billing_last_name']['input_class'] = ['form-control'];
+      $fields['billing']['billing_address_1']['input_class'] = ['form-control'];
+      $fields['billing']['billing_postcode']['input_class'] = ['form-control'];
+      $fields['billing']['billing_phone']['input_class'] = ['form-control'];
+      $fields['billing']['billing_email']['input_class'] = ['form-control'];
+      $fields['order']['order_comments']['input_class'] = ['form-control'];
+
+      $fields['billing']['billing_first_name']['placeholder'] = 'نام';
+      $fields['billing']['billing_last_name']['placeholder'] = 'نام خانوادگی';
+      $fields['billing']['billing_email']['placeholder'] = 'ایمیل';
+      $fields['billing']['billing_phone']['placeholder'] = 'تلفن';
+      $fields['billing']['billing_postcode']['placeholder'] = 'کد پستی';
+
+      $fields['billing']['billing_email']['required'] = false;
+      $fields['billing']['billing_postcode']['required'] = false;
+
+      /*
+      echo "<pre style='direction: ltr;text-align: left;'>";
+      var_export($fields);
+      echo "</pre>";
+      */
+      return $fields;
     }
   }
 }

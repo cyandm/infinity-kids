@@ -9631,6 +9631,25 @@
 
   // assets/js/components/pages.js
   jQuery(document).ready(($) => {
+    const faqItem = $(".home-faq .faq-item");
+    const faqTitle = $(".home-faq .faq-item .faq-title");
+    const faqContent = $(".home-faq .faq-item .faq-content");
+    $(faqTitle).on("click", (e) => {
+      e.preventDefault();
+      const nextContent = $(e.target).next();
+      const parentItem = $(e.target).parent(".faq-item");
+      if ($(parentItem).hasClass("active")) {
+        $(nextContent).slideUp(250);
+        $(parentItem).removeClass("active");
+      } else {
+        $(faqContent).slideUp(250);
+        $(faqItem).removeClass("active");
+        $(nextContent).slideDown(250);
+        $(parentItem).addClass("active");
+      }
+    });
+  });
+  jQuery(document).ready(($) => {
     $("#blog-head-term-select").on("change", (e) => {
       e.preventDefault();
       const termVal = e.target.value;
@@ -9655,6 +9674,53 @@
         $(document.body).attr("style", "");
       }
     });
+  });
+  jQuery(document).ready(($) => {
+    const logiForm = $("#user_login_form");
+    if (logiForm) {
+      const otp_inps = $("#user_login_form .otp-inputs .otp-inp");
+      $(otp_inps).on("keyup", (e) => {
+        e.preventDefault();
+        const thisTarget = e.target;
+        if (thisTarget.value && thisTarget.value !== "") {
+          const hasClass = $(thisTarget).hasClass("last");
+          if (thisTarget.value.length > 1) {
+            thisTarget.value = thisTarget.value.slice(1, 2);
+          }
+          if (!hasClass) {
+            const nextInp = $(thisTarget).next("input[type='number'].otp-inp")[0];
+            $(nextInp).focus();
+          }
+        } else {
+          const prevInp = $(thisTarget).prev("input[type='number'].otp-inp")[0];
+          $(prevInp).focus();
+        }
+      });
+      const otp_timer = $("#user_login_form #otp_timer");
+      if (otp_timer) {
+        const timer = {
+          t: 300,
+          m: 0,
+          s: 0
+        };
+        const timerInterval = setInterval(() => {
+          if (timer.t > 0) {
+            timer.t--;
+            timer.m = parseInt(timer.t / 60);
+            timer.s = timer.t % 60;
+            $(otp_timer).text("\u0627\u0631\u0633\u0627\u0644 \u0645\u062C\u062F\u062F \u06A9\u062F \u062A\u0627\u06CC\u06CC\u062F \u062F\u0631 ".concat(timer.m, ":").concat(timer.s));
+          } else {
+            clearInterval(timerInterval);
+            $(otp_timer).prop("disabled", false);
+            $(otp_timer).text("\u0627\u0631\u0633\u0627\u0644 \u0645\u062C\u062F\u062F \u06A9\u062F \u062A\u0627\u06CC\u06CC\u062F");
+          }
+        }, 1e3);
+        $(otp_timer).on("click", (e) => {
+          e.preventDefault();
+          window.location.reload();
+        });
+      }
+    }
   });
 
   // assets/js/components/archiveSidebar.js

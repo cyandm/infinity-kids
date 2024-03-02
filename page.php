@@ -1,9 +1,7 @@
 <?php get_header(); ?>
 
-<main class="main-body" role="main">
-  <div class="container">
-    <?php the_content(); ?>
-  </div>
+<main class="main-body page" role="main">
+  <?php the_content(); ?>
 </main>
 
 <?php get_footer(); ?>

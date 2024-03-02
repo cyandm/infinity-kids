@@ -3,6 +3,8 @@
 @use "../utils/mixins"as *;
 
 .post-card {
+  height: 100%;
+
   a {
     position: relative;
     display: block;
@@ -17,7 +19,7 @@
 
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
       aspect-ratio: 1/1;
       transition: $transition;

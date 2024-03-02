@@ -35,7 +35,7 @@ if (!(is_array($metaSizes) && count($metaSizes) > 0))
 	راهنمای اندازه
 </button>
 
-<div id="sizes-guide-modal" class="active" data-action="close-sizes">
+<div id="sizes-guide-modal" class="" data-action="close-sizes">
 	<div class="container">
 		<div class="sizes-guide-header" data-action="close-sizes">
 			<!-- <button class="btn" variant="yellow">مشاهده جدول</button> -->

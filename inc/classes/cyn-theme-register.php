@@ -7,6 +7,7 @@ if (!class_exists('cyn_register')) {
     function __construct()
     {
       add_action('init', [$this, 'cyn_register_tax']);
+      add_action('init', [$this, 'cyn_register_faq_post_type']);
       add_action('after_setup_theme', [$this, 'cyn_register_nav']);
       add_action('customize_register', [$this, 'cyn_basic_settings']);
 
@@ -158,6 +159,46 @@ if (!class_exists('cyn_register')) {
             )
           );
       }
+    }
+
+    public function cyn_register_faq_post_type()
+    {
+      $slug = $GLOBALS['cyn_faq_post_name'];
+      $name = "سوال";
+
+      $labels = [
+        'name'           => "سوالات متداول",
+        'singular_name'  => "سوالات متداول",
+        'menu_name'      => "سوالات متداول",
+        'name_admin_bar' => $name,
+        'add_new'        => 'افزودن ' . $name,
+        'add_new_item'   => 'افزودن ' . $name . ' جدید',
+        'new_item'       => $name . ' جدید',
+        'edit_item'      => 'ویرایش ' . $name,
+        'view_item'      => 'دیدن ' . $name,
+        'all_items'      => 'همه ' . $name . ' ها',
+        'search_items'   => 'جستجو ' . $name,
+        'not_found'      => $name . '‌ی پیدا نشد',
+        'not_found_in_trash' => $name . '‌ی پیدا نشد',
+      ];
+
+      $args = [
+        'labels'        => $labels,
+        'public'        => true,
+        'show_ui'       => true,
+        'show_in_menu'  => true,
+        'query_var'     => true,
+        'rewrite'       => ['slug' => $slug],
+        'has_archive'   => true,
+        'hierarchical'  => false,
+        'menu_position' => null,
+        'menu_icon'     => "dashicons-info",
+        'supports'      => ['title', 'editor'],
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+      ];
+
+      register_post_type($slug, $args);
     }
 
     /** Size guide custom metabox **/

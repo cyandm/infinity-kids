@@ -9,6 +9,7 @@
   get_template_part('/templates/home/head-product-cat', null, []);
   get_template_part('/templates/home/offers-swipers', null, []);
   get_template_part('/templates/home/products-swipers', null, []);
+  get_template_part('/templates/home/faq', null, []);
   get_template_part('/templates/home/posts-swipers', null, []);
   ?>
 </main>

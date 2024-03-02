@@ -181,6 +181,10 @@ iframe {
   display: none !important;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Fix mobile Safari increase font-size on landscape mode */
 html {
   -moz-text-size-adjust: none;

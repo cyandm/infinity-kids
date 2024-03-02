@@ -66,14 +66,29 @@
   box-shadow: $box-shadow-sm;
   transition: color $transition, box-shadow $transition;
 
+  &.ltr {
+    flex-direction: row-reverse;
+  }
 
   .btn {
     color: $text-secondary;
+  }
+
+  &:not(.ltr) .btn {
     padding-left: 0;
+  }
+
+  &.ltr .btn {
+    padding-right: 0;
+    direction: ltr;
   }
 
   &:has(.form-control:focus) {
     box-shadow: $box-shadow;
+  }
+
+  &:has(.form-control:disabled) {
+    opacity: 0.5;
   }
 }
 
@@ -107,7 +122,6 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #fff;
   background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   background-repeat: no-repeat;
   background-position: right .75rem center;

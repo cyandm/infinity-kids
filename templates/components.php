@@ -103,6 +103,7 @@
     <button class="btn" variant="text-primary">text-primary</button>
     <button class="btn" variant="text-secondary">text-secondary</button>
     <button class="btn" variant="text-light">text-light</button>
+    <button class="btn" variant="default">default</button>
   </div>
 
   <hr>

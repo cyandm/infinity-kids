@@ -1,0 +1,83 @@
+@use "../utils/variables"as *;
+@use "../utils/functions"as *;
+
+main.main-body.login {
+  .login-container {
+    position: relative;
+    display: flex;
+    margin: 0;
+    padding: 1.25rem;
+    background-color: $natural-100;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    gap: 2rem;
+
+    >* {
+      width: calc(50% - 1rem);
+
+      >* {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+
+    .l {
+      div {
+        padding: 1.5rem;
+
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          max-width: 24rem;
+        }
+      }
+    }
+
+    .otp-inputs {
+      position: relative;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+
+      input[type="number"] {
+        width: 2.625rem;
+        flex: 0 0 auto;
+        text-align: center;
+        border: 1px solid $natural-200;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        & {
+          -moz-appearance: textfield;
+        }
+      }
+    }
+
+    .tel .form-control {
+      letter-spacing: .5em;
+    }
+
+    @media (mediaMaxWidth()) {
+      flex-direction: column-reverse;
+      align-items: stretch;
+
+      >* {
+        width: 100%;
+
+        >* {
+          align-items: stretch;
+        }
+      }
+    }
+  }
+}

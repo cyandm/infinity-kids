@@ -3,6 +3,8 @@
 @use "../utils/mixins"as *;
 
 .product-card {
+  height: 100%;
+
   a {
     position: relative;
     display: block;
