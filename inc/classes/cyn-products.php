@@ -7,9 +7,14 @@ if (!class_exists('cyn_products')) {
     function __construct($actions = false)
     {
       if ($actions) {
+        add_action('template_redirect', [$this, 'cyn_redirect_login_page']);
+
         add_action('pre_get_posts', [$this, 'cyn_archive_pre_get_posts']);
         add_filter('woocommerce_variation_is_active', [$this, 'cyn_variations_out_of_stock'], 10, 2);
         add_filter('woocommerce_checkout_fields', [$this, 'cyn_checkout_fields']);
+        add_filter('woocommerce_default_address_fields', [$this, 'cyn_edit_address_fields']);
+        add_filter('woocommerce_billing_fields', [$this, 'cyn_edit_address_other_fields']);
+        add_filter('woocommerce_account_menu_items', [$this, 'cyn_account_navigation']);
       }
     }
 
@@ -162,12 +167,69 @@ if (!class_exists('cyn_products')) {
       $fields['billing']['billing_email']['required'] = false;
       $fields['billing']['billing_postcode']['required'] = false;
 
-      /*
-      echo "<pre style='direction: ltr;text-align: left;'>";
-      var_export($fields);
-      echo "</pre>";
-      */
       return $fields;
+    }
+
+    /** custom edit address page fields **/
+    public function cyn_edit_address_fields($address)
+    {
+      $address['company']['class'] = ['hidden'];
+      $address['country']['class'] = ['hidden'];
+      $address['address_2']['class'] = ['hidden'];
+
+      $address['first_name']['class'] = [];
+      $address['last_name']['class'] = [];
+      $address['state']['class'] = [];
+      $address['city']['class'] = [];
+      $address['address_1']['class'] = ['w-100'];
+      $address['postcode']['class'] = [];
+
+      $address['first_name']['input_class'] = ['form-control'];
+      $address['last_name']['input_class'] = ['form-control'];
+      $address['address_1']['input_class'] = ['form-control'];
+      $address['city']['input_class'] = ['form-control'];
+      $address['state']['input_class'] = ['form-control'];
+      $address['postcode']['input_class'] = ['form-control'];
+
+      // $address['postcode']['required'] = false;
+
+      return $address;
+    }
+
+    /** custom edit address page phone and email fields **/
+    public function cyn_edit_address_other_fields($fields)
+    {
+      $fields['billing_phone']['class'] = [];
+      $fields['billing_email']['class'] = [];
+
+      $fields['billing_phone']['input_class'] = ['form-control'];
+      $fields['billing_email']['input_class'] = ['form-control'];
+
+      // $fields['billing_email']['required'] = false;
+
+      return $fields;
+    }
+
+    /** redirect my account page to login if not user logged in **/
+    public function cyn_redirect_login_page()
+    {
+      if (get_the_ID() == get_option('woocommerce_myaccount_page_id')) {
+        if (!is_user_logged_in()) {
+          wp_redirect(site_url('login'));
+          exit();
+        }
+      }
+    }
+
+    /** custom my account navigation items **/
+    public function cyn_account_navigation($items)
+    {
+      return array(
+        'edit-account'    => 'اطلاعات کاربری',
+        'orders'          => 'سفارش‌ها',
+        'edit-address'    => 'آدرس',
+        'customer-logout' => 'خروج',
+      );
     }
   }
 }

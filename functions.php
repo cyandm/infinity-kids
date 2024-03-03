@@ -20,11 +20,10 @@ require_once(__DIR__ . '/inc/classes/cyn-products.php');
 require_once(__DIR__ . '/inc/classes/cyn-sms.php');
 
 /* Initializing Classes */
-new cyn_theme_init(true, '1.0.0');
+new cyn_theme_init(true, '1.0.2.0');
 new cyn_register();
 new cyn_acf();
 new cyn_products(true);
-
 
 /* Update Checker */
 require(__DIR__ . '/inc/plugin-update-checker/plugin-update-checker.php');
@@ -33,8 +32,8 @@ use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $updateChecker = PucFactory::buildUpdateChecker(
   'https://github.com/cyandm/infinity-kids.git',
-  get_stylesheet_directory(),
+  __FILE__,
   'infinity-kids'
 );
 $updateChecker->setBranch('main');
-$updateChecker->setAuthentication('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');
+// $updateChecker->setAuthentication('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');

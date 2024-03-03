@@ -44,7 +44,6 @@
     const menuModal = $("#header-mobile #mobile-menu-modal");
     const closeModal = $("#header-mobile [data-action='close']");
     $(openMobileMenu).on("click", (e) => {
-      e.preventDefault();
       if (!$(menuModal).hasClass("active")) {
         $(menuModal).addClass("active");
         $(document.body).css("overflow", "hidden");
@@ -9784,7 +9783,7 @@
         $(document.body).css("overflow", "hidden");
       }
     });
-    $("[data-action='close']").on("click", (e) => {
+    $(".archive-product [data-action='close']").on("click", (e) => {
       e.preventDefault();
       const sidebar = $(".archive-sidebar")[0];
       if (!sidebar)

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * My Account page
  *
@@ -15,22 +16,41 @@
  * @version 3.5.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
+?>
 
-/**
- * My Account navigation.
- *
- * @since 2.6.0
- */
-do_action( 'woocommerce_account_navigation' ); ?>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+	<div class="container">
+		<a href="<?= site_url() ?>">خانه</a>
+		<i class="iconsax" icon-name="arrow-left"></i>
 
-<div class="woocommerce-MyAccount-content">
-	<?php
-		/**
-		 * My Account content.
-		 *
-		 * @since 2.6.0
-		 */
-		do_action( 'woocommerce_account_content' );
-	?>
+		<a href="<?= get_permalink(get_option('woocommerce_myaccount_page_id')) ?>" class="current">حساب کاربری</a>
+	</div>
+</nav>
+
+<div class="container my-account">
+	<div class="f-row c-4">
+		<div class="myAccount-navigation scope-1 w-md-100">
+			<?php
+			/**
+			 * My Account navigation.
+			 *
+			 * @since 2.6.0
+			 */
+			do_action('woocommerce_account_navigation');
+			?>
+		</div>
+
+		<div class="myAccount-content scope-3 w-md-100">
+			<?php
+			/**
+			 * My Account content.
+			 *
+			 * @since 2.6.0
+			 */
+			do_action('woocommerce_account_content');
+			?>
+		</div>
+	</div>
 </div>
+<div class="clearfix s-11"></div>

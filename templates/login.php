@@ -1,11 +1,13 @@
 <?php /* Template Name: Login */ ?>
 
 <?php
-$userLink = get_permalink(get_option('woocommerce_myaccount_page_id')) . 'orders';
+$userLink = get_permalink(get_option('woocommerce_myaccount_page_id'));
 if (is_user_logged_in()) {
   wp_redirect($userLink);
   exit();
 }
+
+$get_header_footer = isset($args['get_header_footer']) ? $args['get_header_footer'] : true;
 ?>
 
 <?php
@@ -106,7 +108,8 @@ if ($otpCondition) {
 }
 ?>
 
-<?php get_header(); ?>
+<?php if ($get_header_footer)
+  get_header(); ?>
 
 <main class="main-body login">
   <div class="clearfix s-16"></div>
@@ -146,9 +149,9 @@ if ($otpCondition) {
               5:00
             </button>
           <?php endif; ?>
-          <div class="clearfix s-11"></div>
 
           <?php if ($pageCondition) : ?>
+            <div class="clearfix s-11"></div>
             <div class="otp-inputs" id="otp-inputs">
               <input type="number" name="otp-inp-n1" id="" class="otp-inp form-control" min="0" max="9" placeholder="X" maxlength="1" required />
               <input type="number" name="otp-inp-n2" id="" class="otp-inp form-control" min="0" max="9" placeholder="X" maxlength="1" required />
@@ -183,4 +186,5 @@ if ($otpCondition) {
   <div class="clearfix s-16"></div>
 </main>
 
-<?php get_footer(); ?>
+<?php if ($get_header_footer)
+  get_footer(); ?>

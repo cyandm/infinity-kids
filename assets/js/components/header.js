@@ -29,8 +29,6 @@ jQuery(document).ready(($) => {
   const closeModal = $("#header-mobile [data-action='close']");
 
   $(openMobileMenu).on("click", (e) => {
-    e.preventDefault();
-
     if (!$(menuModal).hasClass("active")) {
       $(menuModal).addClass("active");
       $(document.body).css("overflow", "hidden");

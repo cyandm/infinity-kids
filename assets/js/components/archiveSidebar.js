@@ -73,7 +73,7 @@ jQuery(document).ready(($) => {
   });
 
   // close sidebar mobile
-  $("[data-action='close']").on("click", (e) => {
+  $(".archive-product [data-action='close']").on("click", (e) => {
     e.preventDefault();
     const sidebar = $(".archive-sidebar")[0];
     if (!sidebar)
