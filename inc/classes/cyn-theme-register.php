@@ -46,6 +46,7 @@ if (!class_exists('cyn_register')) {
       $this->cyn_add_control($wp_customize, $section, "url", "cyn_instagram", "آدرس اینستاگرام");
       $this->cyn_add_control($wp_customize, $section, "url", "cyn_pinterest", "آدرس پینترست");
       $this->cyn_add_control($wp_customize, $section, "url", "cyn_whatsapp", "آدرس واتساپ");
+      $this->cyn_add_control($wp_customize, $section, "textarea", "cyn_enamad", "اینماد");
     }
 
     private function cyn_add_control($wp_customize, $section, $type, $id, $label)

@@ -44,33 +44,6 @@ $getColors = isset($_GET['colors']) ? explode(",", $_GET['colors']) : [];
   <div class="clearfix s-6"></div>
 
   <form id="archive-product-filter-form" class="filter-form" action="<?= $formActionUrl ?>" method="GET">
-    <?php /* wc_cats_tax_name */ ?>
-    <?php if (count($productCats) > 0) : ?>
-      <div class="filter-container">
-        <div class="title">
-          <p class="h3">دسته بندی</p>
-        </div>
-        <div class="clearfix s-0"></div>
-
-        <?php foreach ($productCats as $termId => $termAttr) : ?>
-          <?php if ($termAttr['parent'] == 0) : ?>
-            <button class="btn" variant="<?= in_array($termAttr['id'], $getCats) ? 'secondary' : 'text-light' ?>" type="button" data-cat="<?= $termAttr['id'] ?>" data-tax="cats">
-              <?= $termAttr['name'] ?>
-            </button>
-
-            <?php foreach ($productCats as $childTermId => $childTermAttr) : ?>
-              <?php if ($childTermAttr['parent'] == $termAttr['id']) : ?>
-                <button class="btn child-term" variant="<?= in_array($childTermAttr['id'], $getCats) ? 'secondary' : 'text-light' ?>" type="button" data-cat="<?= $childTermAttr['id'] ?>" data-tax="cats">
-                  <?= $childTermAttr['name'] ?>
-                </button>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        <?php endforeach; ?>
-      </div>
-      <div class="clearfix s-6"></div>
-    <?php endif; ?>
-
     <?php /* cyn_ages_tax_name */ ?>
     <?php if (count($agesCats) > 0) : ?>
       <div class="filter-container">
@@ -113,6 +86,33 @@ $getColors = isset($_GET['colors']) ? explode(",", $_GET['colors']) : [];
             </button>
           <?php endforeach; ?>
         </div>
+      </div>
+      <div class="clearfix s-6"></div>
+    <?php endif; ?>
+
+    <?php /* wc_cats_tax_name */ ?>
+    <?php if (count($productCats) > 0) : ?>
+      <div class="filter-container">
+        <div class="title">
+          <p class="h3">دسته بندی</p>
+        </div>
+        <div class="clearfix s-0"></div>
+
+        <?php foreach ($productCats as $termId => $termAttr) : ?>
+          <?php if ($termAttr['parent'] == 0) : ?>
+            <a href="<?= $termAttr['url'] ?>" class="btn" variant="<?= in_array($termAttr['id'], $getCats) ? 'secondary' : 'text-light' ?>" type="button" data-cat="<?= $termAttr['id'] ?>" data-tax="cats">
+              <?= $termAttr['name'] ?>
+            </a>
+
+            <?php foreach ($productCats as $childTermId => $childTermAttr) : ?>
+              <?php if ($childTermAttr['parent'] == $termAttr['id']) : ?>
+                <button class="btn child-term" variant="<?= in_array($childTermAttr['id'], $getCats) ? 'secondary' : 'text-light' ?>" type="button" data-cat="<?= $childTermAttr['id'] ?>" data-tax="cats">
+                  <?= $childTermAttr['name'] ?>
+                </button>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
+        <?php endforeach; ?>
       </div>
       <div class="clearfix s-6"></div>
     <?php endif; ?>

@@ -9543,7 +9543,8 @@
     loop: true,
     spaceBetween: 16,
     centeredSlides: true,
-    autoplay
+    autoplay,
+    autoHeight: true
   });
   var productsSwiper = new Swiper(".swiper-products", {
     slidesPerView: 1.25,
@@ -9621,7 +9622,8 @@
     loop: true,
     spaceBetween: 16,
     centeredSlides: true,
-    // autoplay,
+    autoplay,
+    autoHeight: true,
     pagination: {
       el: ".swiper-pagination",
       clickable: true
@@ -9784,14 +9786,28 @@
       }
     });
     $(".archive-product [data-action='close']").on("click", (e) => {
-      e.preventDefault();
-      const sidebar = $(".archive-sidebar")[0];
-      if (!sidebar)
-        return;
       if ($(e.target).attr("data-action") === "close") {
+        e.preventDefault();
+        const sidebar = $(".archive-sidebar")[0];
+        if (!sidebar)
+          return;
         $(sidebar).removeClass("active");
         $(document.body).attr("style", "");
       }
     });
+  });
+  jQuery(document).ready(($) => {
+    const termDescription = $("#term-description");
+    const termDescriptionContent = $("#term-description > .term-description-content");
+    const termDescriptionOpener = $("#term-description-opener");
+    if (termDescription && termDescriptionOpener) {
+      $(termDescriptionOpener).on("click", (e) => {
+        e.preventDefault();
+        const target = e.target;
+        const contentH = $(termDescriptionContent).outerHeight();
+        $(termDescription).css("height", contentH);
+        $(target).remove();
+      });
+    }
   });
 })();

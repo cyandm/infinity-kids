@@ -15,6 +15,26 @@ main.main-body {
         img {
           width: 100%;
           height: auto;
+          overflow: hidden;
+          object-fit: cover;
+
+          &.img-xl {
+            aspect-ratio: 2/1;
+
+            @media (mediaMaxWidth()) {
+              display: none;
+              visibility: hidden;
+            }
+          }
+
+          &.img-sm {
+            aspect-ratio: 1/1;
+
+            @media (mediaMinWidth()) {
+              display: none;
+              visibility: hidden;
+            }
+          }
         }
       }
     }

@@ -20,6 +20,14 @@ main.main-body.contact-us {
 
         .f-row {
           >div {
+
+            p,
+            a {
+              text-decoration: none;
+              color: $body-color;
+              font-size: 1rem;
+            }
+
             div.media {
               display: flex;
               align-items: center;

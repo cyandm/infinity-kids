@@ -47,7 +47,7 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 					</a>
 
 					<a href="<?= $accountPermalink ?>" class="btn" variant="text-primary">
-						ورود یا ثبت نام
+						<?= !is_user_logged_in() ? 'ورود یا ثبت نام' : 'حساب کاربری ' ?>
 						<i class="iconsax" icon-name="login-2"></i>
 					</a>
 				</div>

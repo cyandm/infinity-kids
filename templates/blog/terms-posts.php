@@ -27,7 +27,7 @@ $postTerms  = $cynProduct->cyn_getProductTerms(true, false, "category");
           </div>
           <div class="clearfix s-4"></div>
 
-          <article class="article-posts f-row c-3">
+          <article class="article-posts f-row c-3 c-lg-2">
             <?php
             while ($articleQuery->have_posts()) :
               $articleQuery->the_post();

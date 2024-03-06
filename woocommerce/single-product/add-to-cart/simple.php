@@ -57,7 +57,7 @@ if ($product->is_in_stock()) : ?>
 			?>
 
 			<div class="submit-btn">
-				<button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" variant="primary" class="single_add_to_cart_button btn<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>">
+				<button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" variant="primary" class="single_add_to_cart_button btn w-md-100<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>">
 					<?php echo esc_html($product->single_add_to_cart_text()); ?>
 				</button>
 			</div>

@@ -41,22 +41,23 @@ header#header {
         gap: 0.75rem;
         flex-wrap: wrap;
 
-        a {
-          padding: 0.125rem;
-          text-decoration: none;
-          color: $body-color;
-          @include inline-text();
-        }
-
         li {
           position: relative;
-          display: block;
+          display: flex;
+          align-items: center;
           margin: 0;
           padding: 0;
           font-size: 1rem;
           border-bottom: 1px solid transparent;
           transition: border-bottom-color $transition;
           cursor: pointer;
+
+          a {
+            padding: 0.25rem 0.125rem;
+            text-decoration: none;
+            color: $body-color;
+            @include inline-text();
+          }
 
           &.current-menu-item {
             border-bottom-color: $primary-main;

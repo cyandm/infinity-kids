@@ -12,7 +12,7 @@ function cyn_reading_time($id)
   $content = get_post_field('post_content', $id);
   $word_count = str_word_count(strip_tags($content));
   $reading_time = ceil($word_count / 50);
-  return $reading_time;
+  return (int)$reading_time;
 }
 ?>
 
@@ -43,16 +43,15 @@ function cyn_reading_time($id)
 
   <section class="post-content container">
     <div class="post-header">
-      <h1 class="title"><?= $postTitle ?></h1>
       <img class="thumbnail" src="<?= get_the_post_thumbnail_url($post_id, "full") ?>" alt="<?= $postTitle ?>">
-      <div class="clearfix s-6"></div>
+      <div class="clearfix s-4"></div>
 
       <div class="post-details">
         <div class="r f-row">
           <p>
             <i class="iconsax" icon-name="book-open"></i>
             زمان مطالعه
-            <?= cyn_reading_time($post_id) ?>
+            <?= cyn_reading_time($post_id) < 1 ? 1 : cyn_reading_time($post_id) ?>
             دقیقه
           </p>
 
@@ -69,8 +68,11 @@ function cyn_reading_time($id)
           <?php endforeach; ?>
         </div>
       </div>
+      <div class="clearfix s-6"></div>
+
+      <h1 class="title"><?= $postTitle ?></h1>
     </div>
-    <div class="clearfix s-11"></div>
+    <div class="clearfix s-5"></div>
 
     <article class="article-content">
       <?php the_content() ?>
@@ -88,7 +90,7 @@ function cyn_reading_time($id)
             </span>
             دیدگاه
           </small>
-        </h2>
+          </h2>
       </div>
       <div class="clearfix s-6"></div>
 

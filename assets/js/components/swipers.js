@@ -11,7 +11,8 @@ export const homeHeadSlider = new Swiper('#home-head-slider', {
   loop: true,
   spaceBetween: 16,
   centeredSlides: true,
-  autoplay
+  autoplay,
+  autoHeight: true,
 });
 
 export const productsSwiper = new Swiper('.swiper-products', {
@@ -94,7 +95,8 @@ export const blogHeadSlider = new Swiper('#blog-head-slider', {
   loop: true,
   spaceBetween: 16,
   centeredSlides: true,
-  // autoplay,
+  autoplay,
+  autoHeight: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,

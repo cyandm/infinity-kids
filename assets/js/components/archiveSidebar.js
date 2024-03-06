@@ -74,14 +74,32 @@ jQuery(document).ready(($) => {
 
   // close sidebar mobile
   $(".archive-product [data-action='close']").on("click", (e) => {
-    e.preventDefault();
-    const sidebar = $(".archive-sidebar")[0];
-    if (!sidebar)
-      return;
-
     if ($(e.target).attr("data-action") === "close") {
+      e.preventDefault();
+      const sidebar = $(".archive-sidebar")[0];
+      if (!sidebar)
+        return;
+
       $(sidebar).removeClass("active");
       $(document.body).attr("style", "");
     }
   });
+});
+
+/** Product archive description open **/
+jQuery(document).ready(($) => {
+  const termDescription = $("#term-description");
+  const termDescriptionContent = $("#term-description > .term-description-content");
+  const termDescriptionOpener = $("#term-description-opener");
+
+  if (termDescription && termDescriptionOpener) {
+    $(termDescriptionOpener).on("click", (e) => {
+      e.preventDefault();
+      const target = e.target;
+      const contentH = $(termDescriptionContent).outerHeight();
+
+      $(termDescription).css('height', contentH);
+      $(target).remove();
+    });
+  }
 });

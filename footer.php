@@ -1,5 +1,5 @@
 <footer id="footer">
-	<div class="container footer f-row c-7 c-md-2">
+	<div class="container footer f-row c-7 c-lg-4 c-md-2">
 		<div class="">
 			<h5>فروشگاه</h5>
 			<?php wp_nav_menu(['theme_location' => "footer_shop"]) ?>
@@ -18,10 +18,11 @@
 		<div class="">
 			<h5>ارتباط با ما</h5>
 			<?php if (get_option("cyn_phone_number1")) : ?>
-				<p dir="ltr"><?= get_option("cyn_phone_number1") ?></p>
+				<a href="tel:<?= get_option("cyn_phone_number1") ?>" dir="ltr"><?= get_option("cyn_phone_number1") ?></a>
 			<?php endif; ?>
+			<div class="clearfix s-2"></div>
 			<?php if (get_option("cyn_phone_number2")) : ?>
-				<p dir="ltr"><?= get_option("cyn_phone_number2") ?></p>
+				<a href="tel:<?= get_option("cyn_phone_number2") ?>" dir="ltr"><?= get_option("cyn_phone_number2") ?></a>
 			<?php endif; ?>
 		</div>
 
@@ -61,6 +62,13 @@
 			<img src="<?= get_option("cyn_footer_img") ?>">
 		</div>
 	</div>
+
+	<?php $enamadTags = get_option("cyn_enamad"); ?>
+	<?php if (isset($enamadTags) && !empty($enamadTags)) : ?>
+		<div class="enamad">
+			<?= $enamadTags ?>
+		</div>
+	<?php endif; ?>
 </footer>
 
 <!-- Scripts -->

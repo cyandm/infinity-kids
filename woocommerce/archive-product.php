@@ -18,6 +18,7 @@
 
 defined('ABSPATH') || exit;
 
+global $wp_query;
 get_header('shop');
 
 /**
@@ -57,7 +58,7 @@ do_action('woocommerce_before_main_content');
 				do_action('woocommerce_before_shop_loop');
 
 				if (wc_get_loop_prop('total')) : ?>
-					<article class="article-loop f-row c-3">
+					<article class="article-loop f-row c-3 c-lg-2">
 						<?php
 						while (have_posts()) :
 							the_post();
@@ -95,6 +96,24 @@ do_action('woocommerce_before_main_content');
 			?>
 		</div>
 	</div>
+
+	<?php if (!$wp_query->is_paged() && is_archive() && !empty(term_description())) : ?>
+		<div class="clearfix s-8"></div>
+		<div class="archive-description">
+			<div id="term-description" class="">
+				<div class="term-description-content">
+					<?php echo term_description(); ?>
+				</div>
+			</div>
+			<div class="clearfix s-0"></div>
+
+			<div class="f-row">
+				<button id="term-description-opener" class="btn" variant="default">
+					نمایش بیشتر
+				</button>
+			</div>
+		</div>
+	<?php endif; ?>
 </div>
 <div class="clearfix s-6"></div>
 <?php

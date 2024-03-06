@@ -5,6 +5,8 @@ else
   $page_id = 0;
 
 global $wp_query;
+
+$thisTerm = get_term_by( "slug", $wp_query->get('category_name'), "category" );
 ?>
 
 <?php get_header(); ?>
@@ -18,12 +20,12 @@ global $wp_query;
   <section class="blog-term-section">
     <div class="container">
       <div class="title">
-        <h2 class="h1"><?= $wp_query->get('category_name') ?></h2>
+        <h2 class="h1"><?= $thisTerm->name ?></h2>
       </div>
       <div class="clearfix s-4"></div>
 
       <?php if ($wp_query->have_posts()) : ?>
-        <article class="article-posts f-row c-3">
+        <article class="article-posts f-row c-3 c-lg-2">
           <?php
           while ($wp_query->have_posts()) :
             $wp_query->the_post();

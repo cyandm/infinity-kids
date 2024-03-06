@@ -19,10 +19,10 @@ $image   = get_stylesheet_directory_uri() . '/assets/img/contact-us.webp';
               <div class="clearfix s-2"></div>
 
               <?php if (get_option("cyn_phone_number1")) : ?>
-                <p dir="ltr"><?= get_option("cyn_phone_number1") ?></p>
+                <a href="tel:<?= get_option("cyn_phone_number1") ?>" dir="ltr"><?= get_option("cyn_phone_number1") ?></a>
               <?php endif; ?>
               <?php if (get_option("cyn_phone_number2")) : ?>
-                <p dir="ltr"><?= get_option("cyn_phone_number2") ?></p>
+                <a href="tel:<?= get_option("cyn_phone_number2") ?>" dir="ltr"><?= get_option("cyn_phone_number2") ?></a>
               <?php endif; ?>
             </div>
 

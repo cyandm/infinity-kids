@@ -14,9 +14,11 @@ footer#footer {
   .footer {
     position: relative;
 
-    @media (mediaMaxWidth()) {
+    @media (mediaMaxWidth('lg')) {
       >div {
+        padding-bottom: 0.75rem;
         margin-bottom: 0.75rem;
+        border-bottom: 1px solid $natural-200;
       }
     }
 
@@ -33,6 +35,15 @@ footer#footer {
       margin: 0 0 0.5rem 0;
     }
 
+    a {
+      text-decoration: none;
+      color: $body-color;
+
+      &:hover {
+        color: $primary-main;
+      }
+    }
+
     ul {
       position: relative;
       display: block;
@@ -43,14 +54,15 @@ footer#footer {
       li {
         margin-bottom: 0.5rem;
 
+        &:last-child {
+          margin-bottom: 0;
+        }
+
         a {
-          text-decoration: none;
-          color: $body-color;
           border-bottom: 1px solid transparent;
           transition: color $transition, border-color $transition;
 
           &:hover {
-            color: $primary-main;
             border-color: $primary-main;
           }
         }
@@ -81,6 +93,18 @@ footer#footer {
           width: 50%;
         }
       }
+    }
+  }
+
+  .enamad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0;
+
+    a {
+      text-decoration: none;
+      display: block;
     }
   }
 }

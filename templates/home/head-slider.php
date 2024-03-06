@@ -9,7 +9,8 @@ $sliderGroup = get_field("home-head-slider", $frontPageId);
       <?php if (!empty($slide["slide_img"])) : ?>
         <div class="swiper-slide">
           <a href="<?= !empty($slide["slide_href"]) ? $slide["slide_href"] : '#' ?>">
-            <img src="<?= $slide["slide_img"] ?>">
+            <img src="<?= $slide["slide_img"] ?>" class="img-xl">
+            <img src="<?= $slide["slide_img_sm"] ?>" class="img-sm">
           </a>
         </div>
       <?php endif; ?>
