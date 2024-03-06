@@ -20,7 +20,7 @@ require_once(__DIR__ . '/inc/classes/cyn-products.php');
 require_once(__DIR__ . '/inc/classes/cyn-sms.php');
 
 /* Initializing Classes */
-new cyn_theme_init(true, '1.0.3.1');
+new cyn_theme_init(true, '1.0.4');
 new cyn_register();
 new cyn_acf();
 new cyn_products(true);
