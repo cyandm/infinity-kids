@@ -18,12 +18,14 @@ require_once(__DIR__ . '/inc/classes/cyn-theme-register.php');
 require_once(__DIR__ . '/inc/classes/cyn-acf.php');
 require_once(__DIR__ . '/inc/classes/cyn-products.php');
 require_once(__DIR__ . '/inc/classes/cyn-sms.php');
+require_once(__DIR__ . '/inc/classes/cyn-ajax.php');
 
 /* Initializing Classes */
-new cyn_theme_init(true, '1.0.4');
+new cyn_theme_init(true, '1.1.0');
 new cyn_register();
 new cyn_acf();
 new cyn_products(true);
+new cyn_ajax();
 
 /* Update Checker */
 require(__DIR__ . '/inc/plugin-update-checker/plugin-update-checker.php');

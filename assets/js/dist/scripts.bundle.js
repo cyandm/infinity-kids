@@ -9677,51 +9677,83 @@
     });
   });
   jQuery(document).ready(($) => {
-    const logiForm = $("#user_login_form");
-    if (logiForm) {
-      const otp_inps = $("#user_login_form .otp-inputs .otp-inp");
-      $(otp_inps).on("keyup", (e) => {
-        e.preventDefault();
-        const thisTarget = e.target;
-        if (thisTarget.value && thisTarget.value !== "") {
-          const hasClass = $(thisTarget).hasClass("last");
-          if (thisTarget.value.length > 1) {
-            thisTarget.value = thisTarget.value.slice(1, 2);
-          }
-          if (!hasClass) {
-            const nextInp = $(thisTarget).next("input[type='number'].otp-inp")[0];
-            $(nextInp).focus();
-          }
-        } else {
-          const prevInp = $(thisTarget).prev("input[type='number'].otp-inp")[0];
-          $(prevInp).focus();
-        }
-      });
-      const otp_timer = $("#user_login_form #otp_timer");
-      if (otp_timer) {
-        const timer = {
-          t: 300,
-          m: 0,
-          s: 0
-        };
-        const timerInterval = setInterval(() => {
-          if (timer.t > 0) {
-            timer.t--;
-            timer.m = parseInt(timer.t / 60);
-            timer.s = timer.t % 60;
-            $(otp_timer).text("\u0627\u0631\u0633\u0627\u0644 \u0645\u062C\u062F\u062F \u06A9\u062F \u062A\u0627\u06CC\u06CC\u062F \u062F\u0631 ".concat(timer.m, ":").concat(timer.s));
-          } else {
-            clearInterval(timerInterval);
-            $(otp_timer).prop("disabled", false);
-            $(otp_timer).text("\u0627\u0631\u0633\u0627\u0644 \u0645\u062C\u062F\u062F \u06A9\u062F \u062A\u0627\u06CC\u06CC\u062F");
-          }
-        }, 1e3);
-        $(otp_timer).on("click", (e) => {
-          e.preventDefault();
-          window.location.reload();
-        });
+    function objectifyFormArray(formArray) {
+      var returnArray = {};
+      for (var i = 0; i < formArray.length; i++) {
+        returnArray[formArray[i]["name"]] = formArray[i]["value"];
       }
+      return returnArray;
     }
+    const getPhoneForm = $("#login-get-phone");
+    const getOTPForm = $("#login-get-otp");
+    const formLoader = $("#login-form-loader");
+    const formsData = {
+      nickname: void 0,
+      phone: void 0
+    };
+    if (getPhoneForm)
+      $(getPhoneForm).on("submit", (e) => {
+        e.preventDefault();
+        $(formLoader).show();
+        const formDataArray = $(getPhoneForm).serializeArray();
+        const formData = objectifyFormArray(formDataArray);
+        formsData.phone = formData.phone;
+        formsData.nickname = formData.nickname;
+        $.ajax({
+          url: cyn_head_script.url,
+          type: "post",
+          data: {
+            action: "login_get_phone",
+            _nonce: cyn_head_script.nonce,
+            data: formData
+          },
+          success: (res) => {
+            $(getPhoneForm).hide();
+            $(getOTPForm).show();
+          },
+          error: (err) => {
+            if (Array.isArray(err.responseJSON.msgs))
+              return window.alert(err.responseJSON.msgs[0]);
+            window.alert("\u062E\u0637\u0627\u06CC\u06CC \u0628\u0647 \u0648\u062C\u0648\u062F \u0622\u0645\u062F\u0647. \u0644\u0637\u0641\u0627 \u0628\u0639\u062F\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0627\u0645\u062A\u062D\u0627\u0646 \u06A9\u0646\u06CC\u062F");
+          },
+          complete: () => {
+            $(formLoader).hide();
+          }
+        });
+      });
+    if (getOTPForm)
+      $(getOTPForm).on("submit", (e) => {
+        e.preventDefault();
+        $(formLoader).show();
+        const formData = {
+          otp_pass: $("#otp_pass").val(),
+          phone: formsData.phone,
+          nickname: formsData.nickname
+        };
+        $.ajax({
+          url: cyn_head_script.url,
+          type: "post",
+          data: {
+            action: "cyn_login_get_otp",
+            _nonce: cyn_head_script.nonce,
+            data: formData
+          },
+          success: (res) => {
+            if (res.url)
+              window.location.replace(res.url);
+            else
+              window.location.reload();
+          },
+          error: (err) => {
+            if (Array.isArray(err.responseJSON.msgs))
+              return window.alert(err.responseJSON.msgs[0]);
+            window.alert("\u062E\u0637\u0627\u06CC\u06CC \u0628\u0647 \u0648\u062C\u0648\u062F \u0622\u0645\u062F\u0647. \u0644\u0637\u0641\u0627 \u0628\u0639\u062F\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0627\u0645\u062A\u062D\u0627\u0646 \u06A9\u0646\u06CC\u062F");
+          },
+          complete: () => {
+            $(formLoader).hide();
+          }
+        });
+      });
   });
 
   // assets/js/components/archiveSidebar.js

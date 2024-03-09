@@ -47,6 +47,16 @@
     box-shadow: none;
     background: transparent;
   }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 }
 
 .form-control {
@@ -103,8 +113,15 @@
 
     input,
     select,
-    textarea {
+    textarea,
+    .input-group {
       margin-top: 0.5rem;
+    }
+
+    .input-group {
+      input {
+        margin-top: 0;
+      }
     }
   }
 }

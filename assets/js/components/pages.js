@@ -61,73 +61,90 @@ jQuery(document).ready(($) => {
 
 /* Login Page */
 jQuery(document).ready(($) => {
-  const logiForm = $("#user_login_form");
+  function objectifyFormArray(formArray) {
+    var returnArray = {};
+    for (var i = 0; i < formArray.length; i++) {
+      returnArray[formArray[i]['name']] = formArray[i]['value'];
+    }
+    return returnArray;
+  }
 
-  if (logiForm) {
-    // numbers keyup
-    const otp_inps = $("#user_login_form .otp-inputs .otp-inp");
+  const getPhoneForm = $("#login-get-phone");
+  const getOTPForm = $("#login-get-otp");
+  const formLoader = $("#login-form-loader");
+  const formsData = {
+    nickname: undefined,
+    phone: undefined
+  }
 
-    $(otp_inps).on('keyup', (e) => {
+  if (getPhoneForm)
+    $(getPhoneForm).on("submit", (e) => {
       e.preventDefault();
-      const thisTarget = e.target;
+      $(formLoader).show();
 
-      if (thisTarget.value && thisTarget.value !== "") {
-        const hasClass = $(thisTarget).hasClass('last');
+      const formDataArray = $(getPhoneForm).serializeArray();
+      const formData = objectifyFormArray(formDataArray);
+      formsData.phone = formData.phone;
+      formsData.nickname = formData.nickname;
 
-        if (thisTarget.value.length > 1) {
-          thisTarget.value = thisTarget.value.slice(1, 2);
+      $.ajax({
+        url: cyn_head_script.url,
+        type: 'post',
+        data: {
+          action: 'login_get_phone',
+          _nonce: cyn_head_script.nonce,
+          data: formData,
+        },
+        success: (res) => {
+          $(getPhoneForm).hide();
+          $(getOTPForm).show();
+        },
+        error: (err) => {
+          if (Array.isArray(err.responseJSON.msgs))
+            return window.alert(err.responseJSON.msgs[0]);
+
+          window.alert("خطایی به وجود آمده. لطفا بعدا دوباره امتحان کنید");
+        },
+        complete: () => {
+          $(formLoader).hide();
         }
-
-        if (!hasClass) {
-          const nextInp = $(thisTarget).next("input[type='number'].otp-inp")[0];
-          $(nextInp).focus();
-        }
-      } else {
-        const prevInp = $(thisTarget).prev("input[type='number'].otp-inp")[0];
-        $(prevInp).focus();
-      }
+      });
     });
 
-    // otp timer
-    const otp_timer = $("#user_login_form #otp_timer");
-    if (otp_timer) {
-      const timer = {
-        t: 300,
-        m: 0,
-        s: 0
+  if (getOTPForm)
+    $(getOTPForm).on("submit", (e) => {
+      e.preventDefault();
+      $(formLoader).show();
+
+      const formData = {
+        otp_pass: $("#otp_pass").val(),
+        phone: formsData.phone,
+        nickname: formsData.nickname
       }
 
-      const timerInterval = setInterval(() => {
-        if (timer.t > 0) {
-          timer.t--;
-          timer.m = parseInt(timer.t / 60);
-          timer.s = timer.t % 60;
+      $.ajax({
+        url: cyn_head_script.url,
+        type: 'post',
+        data: {
+          action: 'cyn_login_get_otp',
+          _nonce: cyn_head_script.nonce,
+          data: formData,
+        },
+        success: (res) => {
+          if (res.url)
+            window.location.replace(res.url);
+          else
+            window.location.reload();
+        },
+        error: (err) => {
+          if (Array.isArray(err.responseJSON.msgs))
+            return window.alert(err.responseJSON.msgs[0]);
 
-          $(otp_timer).text(`ارسال مجدد کد تایید در ${timer.m}:${timer.s}`);
-        } else {
-          clearInterval(timerInterval);
-          $(otp_timer).prop('disabled', false);
-          $(otp_timer).text('ارسال مجدد کد تایید');
+          window.alert("خطایی به وجود آمده. لطفا بعدا دوباره امتحان کنید");
+        },
+        complete: () => {
+          $(formLoader).hide();
         }
-      }, 1000);
-
-      $(otp_timer).on("click", (e) => {
-        e.preventDefault();
-        window.location.reload();
-      })
-    }
-  }
+      });
+    });
 });
-
-/** Cart page cart items **/
-/*
-jQuery(document).ready(($) => {
-  const removeItem = $("main.main-body.page section.cart-items .cart_item .product-details .product-remove .btn");
-  $(removeItem).on("click", (e) => {
-    const items = $("main.main-body.page section.cart-items .cart_item");
-    if(items.length < 2) {
-      window.location.reload();
-    }
-  });
-});
-*/

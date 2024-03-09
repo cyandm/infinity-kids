@@ -4,79 +4,70 @@
 main.main-body.login {
   .login-container {
     position: relative;
-    display: flex;
+    display: block;
     margin: 0;
     padding: 1.25rem;
     background-color: $natural-100;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
-    gap: 2rem;
 
-    >* {
-      width: calc(50% - 1rem);
-
-      >* {
+    .f-row {
+      .r {
+        position: relative;
         display: flex;
-        flex-direction: column;
+        flex: 1 1 auto;
         align-items: center;
-        justify-content: center;
-        height: 100%;
+        justify-content: stretch;
+
+        .loader {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(#fff, 0.5);
+          backdrop-filter: blur(1px);
+          z-index: 9;
+          cursor: not-allowed;
+        }
+
+        .login-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+
+          @media (mediaMinWidth()) {
+            padding: 0 1.25rem;
+            max-width: 32rem;
+            margin-left: auto;
+          }
+
+          .btns {
+            display: flex;
+            justify-content: flex-end;
+          }
+
+          #otp_pass {
+            text-align: center;
+            letter-spacing: .25em;
+          }
+
+          [name='phone'] {
+            letter-spacing: .25em;
+          }
+        }
       }
-    }
 
-    .l {
-      div {
-        padding: 1.5rem;
-
+      .l {
         img {
           width: 100%;
-          height: auto;
-          object-fit: cover;
-          max-width: 24rem;
         }
       }
-    }
 
-    .otp-inputs {
-      position: relative;
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-
-      input[type="number"] {
-        width: 2.625rem;
-        flex: 0 0 auto;
-        text-align: center;
-        border: 1px solid $natural-200;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        & {
-          -moz-appearance: textfield;
-        }
-      }
-    }
-
-    .tel .form-control {
-      letter-spacing: .5em;
-    }
-
-    @media (mediaMaxWidth()) {
-      flex-direction: column-reverse;
-      align-items: stretch;
-
-      >* {
-        width: 100%;
-
-        >* {
-          align-items: stretch;
-        }
+      @media (mediaMaxWidth()) {
+        flex-direction: column-reverse;
+        gap: 2rem;
       }
     }
   }

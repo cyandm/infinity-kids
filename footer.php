@@ -1,5 +1,5 @@
 <footer id="footer">
-	<div class="container footer f-row c-7 c-lg-4 c-md-2">
+	<div class="container footer f-row c-7">
 		<div class="">
 			<h5>فروشگاه</h5>
 			<?php wp_nav_menu(['theme_location' => "footer_shop"]) ?>

@@ -12,6 +12,13 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		var cyn_head_script = {
+			url: "<?= admin_url('admin-ajax.php') ?>",
+			nonce: "<?= wp_create_nonce('ajax-nonce') ?>",
+			site_url: "<?= site_url() ?>"
+		}
+	</script>
 
 	<?= isset($headField) ? $headField : ''; ?>
 	<?php wp_head() ?>

@@ -16,9 +16,16 @@ footer#footer {
 
     @media (mediaMaxWidth('lg')) {
       >div {
+        width: 25%;
         padding-bottom: 0.75rem;
         margin-bottom: 0.75rem;
         border-bottom: 1px solid $natural-200;
+      }
+    }
+
+    @media (mediaMaxWidth('md')) {
+      >div {
+        width: 50%;
       }
     }
 

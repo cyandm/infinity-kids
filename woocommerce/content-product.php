@@ -84,11 +84,11 @@ if ($product->is_on_sale()) {
 				</div>
 			</div>
 
-			<div class="show f-row c-auto">
+			<!-- <div class="show f-row c-auto">
 				<button class="btn" variant="primary" title="<?= $product_name ?>">
 					مشاهده محصول
 				</button>
-			</div>
+			</div> -->
 		</div>
 	</a>
 </div>

@@ -7,7 +7,7 @@ if (!class_exists('cyn_products')) {
     function __construct($actions = false)
     {
       if ($actions) {
-        add_action('init', [$this, 'cyn_redirect_login_page']);
+        add_action('template_redirect', [$this, 'cyn_redirect_login_page']);
 
         add_action('pre_get_posts', [$this, 'cyn_archive_pre_get_posts']);
         add_filter('woocommerce_variation_is_active', [$this, 'cyn_variations_out_of_stock'], 10, 2);
