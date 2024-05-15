@@ -18,6 +18,6 @@ if ($section == "blog") {
 
 <form class="input-group" action="<?= site_url() ?>" method="GET">
   <button type="submit" class="btn iconsax" icon-name="search-normal-2"></button>
-  <input name="s" type="text" class="form-control" variant="search" placeholder="<?= 'جستجو' . $placeholder ?>" required>
+  <input name="s" type="search" class="form-control" variant="search" placeholder="<?= 'جستجو' . $placeholder ?>" required>
   <input type="hidden" name="section" value="<?= $section ?>">
 </form>

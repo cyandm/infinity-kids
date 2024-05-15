@@ -90,7 +90,7 @@ function cyn_reading_time($id)
             </span>
             دیدگاه
           </small>
-          </h2>
+        </p>
       </div>
       <div class="clearfix s-6"></div>
 

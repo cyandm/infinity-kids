@@ -5,7 +5,9 @@ $faqImage    = get_stylesheet_directory_uri() . "/assets/img/faq-home-img.webp";
 
 if (!isset($faqField))
   return;
-if (!is_array($faqField) && count($faqField) < 1)
+if (!is_array($faqField))
+  return;
+if (count($faqField) < 1)
   return;
 
 $faqQuery = new WP_Query([

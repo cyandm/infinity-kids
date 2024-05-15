@@ -62,6 +62,16 @@ if (!$wpQuery->have_posts())
       wp_reset_postdata();
       ?>
     </div>
+
+    <?php if ($blog) : ?>
+      <?php if (isset($args['showAll'])) : ?>
+        <div class="blog-show-all-sm f-row c-auto">
+          <a href="<?= $args['showAll'] ?>" class="btn show-all" variant="<?= $bgDark ? 'text-secondary' : 'text-primary' ?>">
+            مشاهده همه
+          </a>
+        </div>
+      <?php endif; ?>
+    <?php endif; ?>
   </div>
 
   <?php if (!$blog) : ?>

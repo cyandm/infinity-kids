@@ -27,11 +27,35 @@
         padding: 0.375rem 0.75rem;
       }
     }
+
+    @media (mediaMaxWidth()) {
+      .title {
+        flex: 1 1 auto;
+      }
+
+      .navigation-btns {
+        flex: 0;
+      }
+
+      a.show-all {
+        display: none;
+        visibility: hidden;
+      }
+    }
   }
 
   .swiper-wrapper {
     .swiper-slide {
       height: auto;
+    }
+  }
+
+  .blog-show-all-sm {
+    margin-top: 1rem;
+
+    @media (mediaMinWidth()) {
+      display: none;
+      visibility: hidden;
     }
   }
 }
