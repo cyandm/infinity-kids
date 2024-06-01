@@ -62,6 +62,8 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 
 			<!-- Mobile -->
 			<div id="header-mobile">
+
+				
 				<div class="actions">
 					<button id="open-mobile-menu" class="btn" variant="default"><i class="iconsax" icon-name="hamburger-menu"></i></button>
 
@@ -72,6 +74,12 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 					<a href="<?= wc_get_cart_url() ?>" class="btn" variant="default">
 						<i class="iconsax" icon-name="shop"></i>
 					</a>
+				</div>
+				
+				<div class="clearfix s-4"></div>
+				
+				<div class="mobile-search">
+					<?php get_template_part('/templates/loop/search-form', null, []); ?>
 				</div>
 
 				<!-- Menu Modal -->
@@ -90,9 +98,9 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 						</div>
 						<div class="clearfix s-4"></div>
 
-						<div class="mobile-search">
-							<?php get_template_part('/templates/loop/search-form', null, []); ?>
-						</div>
+						<!-- <div class="mobile-search">
+							<?php //get_template_part('/templates/loop/search-form', null, []); ?>
+						</div> -->
 						<div class="clearfix s-4"></div>
 
 						<nav class="mobile-menu-nav">
