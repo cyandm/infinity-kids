@@ -24,6 +24,15 @@
 			<?php if (get_option("cyn_phone_number2")) : ?>
 				<a href="tel:<?= get_option("cyn_phone_number2") ?>" dir="ltr"><?= get_option("cyn_phone_number2") ?></a>
 			<?php endif; ?>
+			<div class="clearfix s-2"></div>
+			<?php if (get_option("cyn_phone_number3")) : ?>
+				<a href="tel:<?= get_option("cyn_phone_number3") ?>" dir="ltr"><?= get_option("cyn_phone_number3") ?></a>
+			<?php endif; ?>
+			
+			<div class="clearfix s-2"></div>
+			<?php if (get_option("cyn_shop_support")) : ?>
+				<?= get_option("cyn_shop_support") ?>
+			<?php endif; ?>
 		</div>
 
 		<div class="w-md-100">
