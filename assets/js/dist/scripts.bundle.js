@@ -56,6 +56,13 @@
       }
     });
   });
+  var header_mobile = document.querySelectorAll(".menu-item-has-children");
+  console.log(header_mobile);
+  header_mobile.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      elem.classList.toggle("active");
+    });
+  });
 
   // node_modules/swiper/shared/ssr-window.esm.mjs
   function isObject(obj) {

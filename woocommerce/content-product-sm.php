@@ -29,8 +29,9 @@ $product_image = $product->get_image("full", ['class' => "product-img"]);
 $product_permalink = get_the_permalink($product_id);
 
 $product->is_type('variable') && $all_variations = $product->get_variation_attributes();
-
-if ($product->is_on_sale()) {
+if (!$product->is_in_stock()) {
+	$sale_price = "ناموجود";
+} elseif ($product->is_on_sale()) {
 	if ($product->is_type('simple')) {
 		$sale_price = $product->get_sale_price();
 		$regular_price = $product->get_regular_price();
@@ -46,6 +47,7 @@ if ($product->is_on_sale()) {
 		$sale_price = $product->get_regular_price();
 	} elseif ($product->is_type('variable')) {
 		$product_prices = $product->get_variation_prices();
+		// $sale_price = $product_prices['regular_price'];
 
 		$sale_price = min($product_prices['regular_price']);
 	}

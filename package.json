@@ -19,6 +19,6 @@
     "swiper": "^11.0.5"
   },
   "devDependencies": {
-    "esbuild": "^0.19.11"
+    "esbuild": "^0.19.12"
   }
 }

@@ -36,6 +36,12 @@ $productId = get_the_ID();
 $relatedProducts = wc_get_related_products($productId, 16, array());
 $relatedProductsArgs = array(
 	'post_type' => 'product',
+	'meta_query' => array(
+		array(
+			'key' => '_stock_status',
+			'value' => 'instock'
+		)
+	),
 	'posts_per_page' => 16,
 	'post__in' => $relatedProducts
 );
@@ -66,23 +72,25 @@ $relatedProductsArgs = array(
 
 		<div class="product-images scope-2 w-md-100">
 			<?php
-			$thumbnail_id   = $product->get_image_id();
+			$thumbnail_id = $product->get_image_id();
 			$attachment_ids = $product->get_gallery_image_ids();
-			array_unshift($attachment_ids, (int)$thumbnail_id);
+			array_unshift($attachment_ids, (int) $thumbnail_id);
 			?>
 			<div id="single-product-gallery" class="swiper">
 				<div class="swiper-navigation">
 					<div class="navigation prev">
-						<button class="swiper-btn-prev btn" variant="default"><i class="iconsax" icon-name="chevron-right"></i></button>
+						<button class="swiper-btn-prev btn" variant="default"><i class="iconsax"
+								icon-name="chevron-right"></i></button>
 					</div>
 
 					<div class="navigation next">
-						<button class="swiper-btn-next btn" variant="default"><i class="iconsax" icon-name="chevron-left"></i></button>
+						<button class="swiper-btn-next btn" variant="default"><i class="iconsax"
+								icon-name="chevron-left"></i></button>
 					</div>
 				</div>
 
 				<div class="swiper-wrapper">
-					<?php foreach ($attachment_ids as $imgId) : ?>
+					<?php foreach ($attachment_ids as $imgId): ?>
 						<div class="swiper-slide">
 							<img src="<?= wp_get_attachment_image_url($imgId, "full") ?>">
 						</div>
@@ -92,7 +100,7 @@ $relatedProductsArgs = array(
 
 			<div id="single-product-thumbs" class="swiper">
 				<div class="swiper-wrapper">
-					<?php foreach ($attachment_ids as $imgId) : ?>
+					<?php foreach ($attachment_ids as $imgId): ?>
 						<div class="swiper-slide">
 							<img class="thumb" src="<?= wp_get_attachment_image_url($imgId, "full") ?>">
 						</div>
@@ -106,12 +114,12 @@ $relatedProductsArgs = array(
 	<section class="product-related">
 		<?php
 		get_template_part('/templates/loop/swiper-products', null, [
-			'queryArgs'   => $relatedProductsArgs,
+			'queryArgs' => $relatedProductsArgs,
 			'parentClass' => "container",
-			'navigation'  => true,
-			'title'       => "شاید بپسندید",
-			'bgDark'      => false,
-			'smPerPage'   => 6
+			'navigation' => true,
+			'title' => "شاید بپسندید",
+			'bgDark' => false,
+			'smPerPage' => 6
 		]);
 		?>
 	</section>

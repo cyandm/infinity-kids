@@ -42,3 +42,12 @@ jQuery(document).ready(($) => {
     }
   });
 });
+const header_mobile = document.querySelectorAll(".menu-item-has-children");
+  console.log(header_mobile);
+
+
+header_mobile.forEach((elem) => {
+   elem.addEventListener("click", () => {
+     elem.classList.toggle("active");
+   });
+ });

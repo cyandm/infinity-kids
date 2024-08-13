@@ -19,7 +19,13 @@ foreach ($catsGroup as $termId) :
 
   $queryArgs = array(
     'post_type' => 'product',
-    'posts_per_page' => 16,
+    'posts_per_page' =>16,
+    'meta_query' => array(
+        array(
+            'key' => '_stock_status',
+            'value' => 'instock'
+        )
+        ),
     'tax_query' => array(
       array(
         'taxonomy' => $GLOBALS['wc_cats_tax_name'],

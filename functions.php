@@ -19,9 +19,10 @@ require_once(__DIR__ . '/inc/classes/cyn-acf.php');
 require_once(__DIR__ . '/inc/classes/cyn-products.php');
 require_once(__DIR__ . '/inc/classes/cyn-sms.php');
 require_once(__DIR__ . '/inc/classes/cyn-ajax.php');
+require_once (__DIR__ . '/inc/classes/cyn-query.php');
 
 /* Initializing Classes */
-new cyn_theme_init(true, '1.1.1');
+new cyn_theme_init(false, '1.1.1');
 new cyn_register();
 new cyn_acf();
 new cyn_products(true);

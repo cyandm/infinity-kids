@@ -128,7 +128,7 @@ if (!class_exists('cyn_products')) {
     public function cyn_checkout_fields($fields)
     {
       unset($fields['billing']['billing_company']);
-      unset($fields['billing']['billing_country']);
+      // unset($fields['billing']['billing_country']);
       unset($fields['billing']['billing_address_2']);
 
       $fields['billing']['billing_first_name']['priority'] = 1;
