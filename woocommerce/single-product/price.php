@@ -26,7 +26,9 @@ global $product;
 $product_id    = $product->get_id();
 
 
-if ($product->is_on_sale()) {
+if (!$product->is_in_stock()) {
+	$sale_price = "ناموجود";
+} elseif ($product->is_on_sale()) {
 	if ($product->is_type('simple')) {
 		$sale_price = $product->get_sale_price();
 		$regular_price = $product->get_regular_price();

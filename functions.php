@@ -19,23 +19,28 @@ require_once(__DIR__ . '/inc/classes/cyn-acf.php');
 require_once(__DIR__ . '/inc/classes/cyn-products.php');
 require_once(__DIR__ . '/inc/classes/cyn-sms.php');
 require_once(__DIR__ . '/inc/classes/cyn-ajax.php');
+require_once (__DIR__ . '/inc/classes/cyn-query.php');
 
 /* Initializing Classes */
-new cyn_theme_init(true, '1.1.1');
+new cyn_theme_init(false, '1.1.8');
 new cyn_register();
 new cyn_acf();
 new cyn_products(true);
 new cyn_ajax();
 
-/* Update Checker */
-require(__DIR__ . '/inc/plugin-update-checker/plugin-update-checker.php');
 
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+/**********************************************************/
+function sort_products_by_modified_date( $query ) {
+    // اطمینان از اینکه در بخش مدیریت نیستیم و کوئری اصلی است
+    if ( is_admin() || !$query->is_main_query() ) {
+        return;
+    }
 
-$updateChecker = PucFactory::buildUpdateChecker(
-  'https://github.com/cyandm/infinity-kids.git',
-  __FILE__,
-  'infinity-kids'
-);
-$updateChecker->setBranch('main');
-// $updateChecker->setAuthentication('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');
+    // بررسی می‌کنیم که کوئری برای محصولات ووکامرس در صفحات آرشیو (دسته‌بندی‌ها، تگ‌ها و غیره) باشد
+    if ( is_post_type_archive('product') || is_tax('product_cat') || is_tax('product_tag') || is_tax('cyn_offers') ) {
+        // تنظیم ترتیب بر اساس تاریخ آخرین ویرایش
+        $query->set( 'orderby', 'modified' );
+        $query->set( 'order', 'DESC' ); // نزولی: جدیدترین ویرایش در ابتدا
+    }
+}
+add_action( 'pre_get_posts', 'sort_products_by_modified_date' );

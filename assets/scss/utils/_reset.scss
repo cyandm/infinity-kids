@@ -275,3 +275,99 @@ meter {
 ::-webkit-details-marker {
   display: none;
 }
+
+
+/* site css */
+.mt-8{
+	margin-top: 8px;
+}
+
+
+.billing_national_code_field{
+	display: none !important;
+}
+
+.wallet-pay-partial td , .wallet-pay-partial input{
+	all: revert !important;
+	display: block !important;
+}
+
+.woocommerce-shipping-methods li input{
+all: revert !important;
+}
+
+.woocommerce-input-wrapper select{
+	background: #fff;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+}
+
+#billing_national_code_field{
+	display:none
+}
+
+.woocommerce-billing-fields__field-wrapper{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.woocommerce-billing-fields__field-wrapper > p {
+	grid-column: 1 / 3;
+	width: 100% !important;
+	order:100;
+}
+
+.woocommerce-billing-fields__field-wrapper > p#billing_first_name_field{
+	order:1;
+}
+
+
+.woocommerce-billing-fields__field-wrapper > p#billing_last_name_field{
+	order:2;
+}
+
+.woocommerce-billing-fields__field-wrapper > p#billing_state_field{
+	order:3;
+}
+
+.woocommerce-billing-fields__field-wrapper > p#billing_city_field{
+	order:4;
+}
+
+.swiper-slide:empty{
+	display:none;
+}
+
+.flex{
+	display:flex !important;
+}
+
+.justify-end{
+	justify-content:flex-end;
+}
+
+.w-6{
+	width: 1.5rem;
+}
+
+.gap-2{
+	gap:0.5rem;
+}
+
+footer#footer .footer-media{
+flex-direction:row;
+	align-items:flex-end;
+}
+
+footer#footer .footer-media > a {
+	display:flex;
+	gap:4px;
+	justify-content: center;
+	align-items:center;
+}
+
+
+footer#footer .footer-media p{
+	margin:0;
+}
+ 

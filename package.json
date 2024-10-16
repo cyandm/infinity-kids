@@ -1,6 +1,6 @@
 {
   "name": "infinity-kids",
-  "version": "1.1.0",
+  "version": "1.1.8",
   "description": "",
   "main": "index.php",
   "scripts": {
@@ -19,6 +19,6 @@
     "swiper": "^11.0.5"
   },
   "devDependencies": {
-    "esbuild": "^0.19.11"
+    "esbuild": "^0.19.12"
   }
 }

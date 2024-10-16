@@ -23,13 +23,23 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 	<?= isset($headField) ? $headField : ''; ?>
 	<?php wp_head() ?>
 </head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6GDZ88ZV5B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6GDZ88ZV5B');
+</script>
 
 <body <?php body_class() ?>>
 	<?= isset($bodyField) ? $bodyField : ''; ?>
 
 	<?php wp_body_open() ?>
 
-	<header id="header">
+	<header id="header">			
+
 		<div class="container">
 			<!-- Desktop -->
 			<div id="header-desktop">
@@ -59,7 +69,6 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 					</a>
 				</div>
 			</div>
-
 			<!-- Mobile -->
 			<div id="header-mobile">
 
@@ -110,4 +119,6 @@ $bodyField = get_field('acf_top_body', $frontPageId);
 				</div>
 			</div>
 		</div>
+	<div class="sub-menu-back"></div>
+	
 	</header>

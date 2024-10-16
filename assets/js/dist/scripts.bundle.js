@@ -56,6 +56,13 @@
       }
     });
   });
+  var header_mobile = document.querySelectorAll(".menu-item-has-children");
+  console.log(header_mobile);
+  header_mobile.forEach((elem) => {
+    elem.addEventListener("click", () => {
+      elem.classList.toggle("active");
+    });
+  });
 
   // node_modules/swiper/shared/ssr-window.esm.mjs
   function isObject(obj) {
@@ -462,15 +469,15 @@
   }
   function elementParents(el, selector) {
     const parents = [];
-    let parent = el.parentElement;
-    while (parent) {
+    let parent2 = el.parentElement;
+    while (parent2) {
       if (selector) {
-        if (parent.matches(selector))
-          parents.push(parent);
+        if (parent2.matches(selector))
+          parents.push(parent2);
       } else {
-        parents.push(parent);
+        parents.push(parent2);
       }
-      parent = parent.parentElement;
+      parent2 = parent2.parentElement;
     }
     return parents;
   }
@@ -9841,5 +9848,49 @@
         $(target).remove();
       });
     }
+  });
+
+  // assets/js/components/variable.js
+  var rootEl = document.querySelector(":root");
+  var containerEL = document.querySelector(".container");
+  var headerEl = document.querySelector("header");
+  var footerEl = document.querySelector("footer");
+  var headerHeight;
+  var marginFromSide;
+  var footerHeight;
+  var makeKebab = (str) => str.replace(
+    /[A-Z]+(?![a-z])|[A-Z]/g,
+    ($, ofs) => (ofs ? "-" : "") + $.toLowerCase()
+  );
+  var setCssVariable = (value, name, parent2 = rootEl, prefix = "px") => {
+    const kebabName = makeKebab(name);
+    parent2.style.setProperty("--".concat(kebabName), value + prefix);
+  };
+  var setCssVariableGroup = () => {
+    headerHeight = headerEl.getClientRects()[0].height;
+    if (footerEl) {
+      footerHeight = footerEl.getClientRects()[0].height;
+    } else {
+      footerHeight = 0;
+    }
+    const containerWidth = containerEL.clientWidth;
+    marginFromSide = (window.innerWidth - containerWidth) / 2;
+    setCssVariable(headerHeight, "headerHeight");
+    setCssVariable(marginFromSide, "marginFromSide");
+    setCssVariable(footerHeight, "footerHeight");
+  };
+  window.addEventListener("load", setCssVariableGroup);
+  window.addEventListener("resize", setCssVariableGroup);
+
+  // assets/js/components/submenu.js
+  var parent = document.querySelectorAll(".menu-item-has-children");
+  var submenu = document.querySelector(".sub-menu-back");
+  parent.forEach((elem) => {
+    elem.addEventListener("mouseenter", (e) => {
+      submenu.classList.add("active");
+    });
+    elem.addEventListener("mouseleave", (e) => {
+      submenu.classList.remove("active");
+    });
   });
 })();

@@ -1,26 +1,44 @@
-@use "../utils/variables"as *;
-@use "../utils/functions"as *;
-@use "../utils/mixins"as *;
+@use "../utils/variables" as *;
+@use "../utils/functions" as *;
+@use "../utils/mixins" as *;
 
+// --header-height: 55px;
 header#header {
   position: relative;
   display: block;
   width: 100%;
   top: 0;
   background: $natural-100;
-  padding: 1.25rem 0;
   box-shadow: $box-shadow-sm;
   z-index: 9998;
 
   .btn {
-    padding: .375rem .75rem;
+    padding: 0.375rem 0.75rem;
   }
 
+  .sub-menu-back {
+    visibility: hidden;
+    height: calc(100vh - var(--header-height));
+    width: 100vw;
+    opacity: 0;
+    background-color: #000;
+    position: fixed;
+    top: 13vh;
+    z-index: -1;
+    transition: all 0.8s ease-in-out;
+    right: 0;
+    &.active{
+      visibility: visible;
+          opacity: 0.4;
+
+    }
+  }
   #header-desktop {
     position: relative;
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    padding: 1.25rem 0;
 
     .logo {
       min-width: 2rem;
@@ -29,8 +47,10 @@ header#header {
 
     .header-nav {
       flex: 1 1 auto;
+      z-index: 4444;
 
       ul {
+        z-index: 4444444;
         position: relative;
         width: 100%;
         padding: 0;
@@ -51,7 +71,10 @@ header#header {
           border-bottom: 1px solid transparent;
           transition: border-bottom-color $transition;
           cursor: pointer;
-
+          background: $natural-100;
+          &.menu-item-has-children:hover .sub-menu-back {
+            visibility: visible;
+          }
           a {
             padding: 0.25rem 0.125rem;
             text-decoration: none;
@@ -63,7 +86,7 @@ header#header {
             border-bottom-color: $primary-main;
           }
 
-          >ul {
+          > ul {
             visibility: hidden;
             opacity: 0;
             pointer-events: none;
@@ -71,29 +94,49 @@ header#header {
             width: auto;
             top: calc(100% + 0.125rem);
             right: 0;
+            gap: 0;
             flex-direction: column;
             align-items: stretch;
-            background: $natural-100;
             box-shadow: $box-shadow-sm;
-            padding: 0.75rem;
             border-radius: $border-radius-sm;
             transition: all $transition;
-
-            >li>a {
-              display: block;
-              width: 100%;
-              text-align: center;
+            a {
+              padding: 1rem 0.55rem 1.5rem 2rem;
+            }
+            li.menu-item-has-children {
+              @include make-icon("\e8ec", false);
+              background: $natural-100;
+              &:hover {
+                background: #fbd1d8;
+                color: $primary-main;
+  
+              }
+              ul {
+                border: 2px solid #F2F2F2;
+                // box-shadow:0 0 6px -1px #7272724f;
+                border-radius: 10px;
+                margin-right: 100%;
+                margin-top: -60%;
+                a {
+                  padding: 1rem 0.55rem 1.5rem 4rem;
+                }
+              }
+              a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0.55rem 1.5rem 2rem;
+              }
             }
           }
-
           &:hover {
             border-bottom-color: $primary-main;
 
-            >a {
+            > a {
               color: $primary-main;
             }
 
-            >ul {
+            > ul {
               visibility: visible;
               opacity: 1;
               pointer-events: all;
@@ -119,7 +162,7 @@ header#header {
       isolation: isolate;
 
       .btn[variant="text-primary"] {
-        padding: 1.5*.375rem 1.5*.75rem;
+        padding: 1.5 * 0.375rem 1.5 * 0.75rem;
 
         @media (mediaMaxWidth(lg)) {
           font-size: 0.9rem;
@@ -127,7 +170,6 @@ header#header {
       }
 
       .header-search {
-
         .btn {
           @include inline-text();
 
@@ -158,7 +200,6 @@ header#header {
   }
 
   #header-mobile {
-
     .actions {
       position: relative;
       display: flex;
@@ -225,7 +266,7 @@ header#header {
       display: flex;
       flex-direction: column;
 
-      >* {
+      > * {
         width: 100%;
       }
 
@@ -269,7 +310,8 @@ header#header {
 
           li {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -277,26 +319,48 @@ header#header {
             border-bottom: 1px solid $natural-200;
 
             &.current-menu-item {
-
-              &,
               a {
                 color: $secondary-main;
               }
 
               &::before {
-                content: "";
-                position: relative;
-                display: block;
-                background-color: $secondary-main;
-                width: 6px;
-                height: 2px;
-                border-radius: 1px;
+                //  position: relative;
+                // display: block;
+                // background-color: $secondary-main;
+                // width: 6px;
+                // height: 2px;
+                // border-radius: 1px;
               }
             }
 
             &.menu-item-has-children {
-              flex-wrap: wrap;
+              // flex-wrap: wrap;
               border-bottom: none;
+              ul {
+                li.menu-item-has-children {
+                  @include make-icon("\e9d0", true);
+                  flex-direction: row;
+                  transition: all 0.5s ease-in-out;
+
+                  align-items: center;
+                  &::before {
+                    padding-inline: 2%;
+                    transition: all 0.8s ease-in-out;
+                  }
+                  &.active {
+                    @include make-icon("\e818", true);
+
+                    display: block;
+                    ul {
+                      visibility: visible;
+                      height: auto;
+                      opacity: 1;
+                      margin-right: 60px;
+                      width: 60%;
+                    }
+                  }
+                }
+              }
             }
           }
 
@@ -310,9 +374,15 @@ header#header {
             }
           }
 
-          >li>ul {
+          > li > ul {
             width: 100%;
             margin: 0.5rem 1.75rem 0.5rem 0;
+            ul {
+              transition: all 0.5s ease-in-out;
+              visibility: hidden;
+              height: 0;
+              margin: 0;
+            }
           }
         }
       }
@@ -327,7 +397,6 @@ header#header {
 
 header#header,
 footer#footer {
-
   ul .discount-badge a {
     @include make-icon("\ead8", false);
 

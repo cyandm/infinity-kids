@@ -17,6 +17,14 @@ foreach ($offersGroup as $termId) :
   $queryArgs = array(
     'post_type' => 'product',
     'posts_per_page' => 16,
+	 'orderby' => 'modified', 
+    'order'=> 'DESC',
+    'meta_query' => array(
+      array(
+        'key' => '_stock_status',
+        'value' => 'instock'
+      )
+    ),
     'tax_query' => array(
       array(
         'taxonomy' => $GLOBALS['cyn_offers_tax_name'],

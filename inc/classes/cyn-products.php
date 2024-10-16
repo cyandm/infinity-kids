@@ -128,7 +128,7 @@ if (!class_exists('cyn_products')) {
     public function cyn_checkout_fields($fields)
     {
       unset($fields['billing']['billing_company']);
-      unset($fields['billing']['billing_country']);
+      // unset($fields['billing']['billing_country']);
       unset($fields['billing']['billing_address_2']);
 
       $fields['billing']['billing_first_name']['priority'] = 1;
@@ -148,7 +148,7 @@ if (!class_exists('cyn_products')) {
       $fields['billing']['billing_address_1']['class'] = ['w-100'];
       $fields['billing']['billing_phone']['class'] = [];
       $fields['billing']['billing_email']['class'] = [];
-      $fields['billing']['billing_postcode']['class'] = ['w-100'];
+      $fields['billing']['billing_postcode']['class'] = ['w-100 not-required'];
 
       $fields['billing']['billing_first_name']['input_class'] = ['form-control'];
       $fields['billing']['billing_last_name']['input_class'] = ['form-control'];
